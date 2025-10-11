@@ -18,20 +18,22 @@
                     <p>Already have a account? <a href="login.html">Log In</a></p>
                 </div>
                 <div class="right">
-                    <div class="form_box">
+                    <form class="form_box">
                         <p>Sign Up by filling out this form</p>
                         <div class="fullNameWrapper">
                             <p>Full Name</p>
                             <input type="text" class="fullName" placeholder="Enter your Full Name">
+                            <p class="error-message"></p>
                         </div>
                         <div class="phoneNumberWrapper">
                             <p>Phone Number</p>
                             <input type="text" class="phoneNumber" placeholder="Enter your Phone Number">
+                            <p class="error-message"></p>
                         </div>
                         <div class="passwordWrapper">
                             <p>Password</p>
                             <input type="password" class="password" placeholder="Enter your Password">
-                            <p>Use 8 or more characters with a mix of letters, numbers & symbols</p>
+                            <p class="error-message">Use 8 or more characters with a mix of letters, numbers & symbols</p>
                         </div>
                         <div class="genderWrapper">
                             <p>What's Your Gender?</p>
@@ -45,23 +47,25 @@
                                     Female
                                 </label>
                                 <label>
-                                    <input type="radio" name="gender" value="female" required>
+                                    <input type="radio" name="gender" value="other" required>
                                     Others
                                 </label>
                             </div>
+                            <p class="error-message"></p>
                         </div>
                         <div class="ageWrapper">
                             <p>Age</p>
-                            <input type="text" class="phoneNumber" placeholder="Enter your Age">
-                            <p>Must be between 18 to 150</p>
+                            <input type="text" class="age" placeholder="Enter your Age">
+                            <p class="error-message">Must be between 18 to 150</p>
                         </div>
-                        <button type="submit" class="signUpSubmitBtn">Sign Up</button>
-                    </div>
+                        <button type="button" class="signUpSubmitBtn" disabled>Sign Up</button>
+                    </form>
                 </div>
             </div>
         </div>
     </main>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="signup.js"></script>
 </body>
 
