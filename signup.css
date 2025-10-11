@@ -161,11 +161,14 @@ main {
     background-color: grey;
     border-radius: 30px;
     margin-top: .5vw;
+    text-decoration: none; /* Added for <a> tag */
+    display: inline-block
 }
 
-.signUpSubmitBtn:disabled {
-    background-color: grey;
+.signUpSubmitBtn.disabled {
     cursor: not-allowed;
+    pointer-events: none; /* Prevents click events */
+    background-color: grey;
 }
 
 .error-message {

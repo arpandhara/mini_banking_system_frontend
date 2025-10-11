@@ -20,12 +20,12 @@ tl.from(
   "-=0.5"
 );
 
-const form = document.querySelector(".form_box");
 const fullNameInput = document.querySelector(".fullName");
 const phoneNumberInput = document.querySelector(".phoneNumber");
 const passwordInput = document.querySelector(".password");
 const ageInput = document.querySelector(".age");
 const genderInputs = document.querySelectorAll('input[name="gender"]');
+// The submitButton is now our <a> tag
 const submitButton = document.querySelector(".signUpSubmitBtn");
 
 const fullNameError = document.querySelector(".fullNameWrapper .error-message");
@@ -129,17 +129,35 @@ const validateForm = () => {
     isAgeValid &&
     isGenderValid
   ) {
-    submitButton.disabled = false;
+    // Enable the link by removing the 'disabled' class
+    submitButton.classList.remove('disabled');
     submitButton.style.backgroundColor = "#D355D3";
   } else {
-    submitButton.disabled = true;
+    // Disable the link by adding the 'disabled' class
+    submitButton.classList.add('disabled');
     submitButton.style.backgroundColor = "grey";
   }
 };
 
-// Listen for form submission
+// Listen for a "click" on the <a> tag
 submitButton.addEventListener("click", async (e) => {
+  console.log('Submit button clicked!');
+  
+  // Prevent the default link behavior (navigating to #)
   e.preventDefault();
+  e.stopPropagation();
+  console.log('Default prevented');
+
+  // If the button is disabled, do nothing
+  if(submitButton.classList.contains('disabled')) {
+      console.log('Button is disabled, returning');
+      return;
+  }
+  
+  console.log('Button is enabled, proceeding...');
+
+  // We still run a final validation check in case
+  console.log('Running final validation...');
   if (
     !validateFullName() ||
     !validatePhoneNumber() ||
@@ -147,8 +165,11 @@ submitButton.addEventListener("click", async (e) => {
     !validateAge() ||
     !validateGender()
   ) {
+    console.log('Validation failed, returning');
     return;
   }
+  
+  console.log('Validation passed!');
 
   const selectedGender = document.querySelector(
     'input[name="gender"]:checked'
@@ -162,6 +183,8 @@ submitButton.addEventListener("click", async (e) => {
     phoneNumber: phoneNumberInput.value,
   };
 
+  console.log('Sending data to server:', userData);
+  
   try {
     const response = await fetch("http://127.0.0.1:5000/api/signup", {
       method: "POST",
@@ -171,12 +194,19 @@ submitButton.addEventListener("click", async (e) => {
       body: JSON.stringify(userData),
     });
 
+    console.log('Response received:', response);
     const result = await response.json();
+    console.log('Server response:', result);
 
     if (result.signUp === true) {
+      console.log('Signup successful!');
       alert(result.message);
+      console.log('About to navigate to login.html');
+      
+      // Try immediate navigation first
       window.location.href = "login.html";
     } else {
+      console.log('Signup failed:', result.error);
       alert(`Error: ${result.error || 'Sign up failed. Please try again.'}`);
     }
   } catch (error) {
