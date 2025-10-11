@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400;1,700&family=Doto:wght@100..900&family=Italiana&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway+Dots&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.innerBox {
+    height: 98%;
+    width: 99%;
+    border-radius: 30px;
+    background-color: black;
+    background-color: black;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(224, 29, 127, 0.5), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(224, 29, 127, 0.5), transparent 30%),
+        radial-gradient(circle at 30% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
+    /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.layer {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    position: relative;
+    padding: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.floatingCard {
+    position: absolute;
+    height: 40%;
+    width: 40%;
+}
+
+.floatingCard img {
+    height: 100%;
+    width: 100%;
+}
+
+.floatingCard1 {
+    bottom: 0%;
+    left: 0;
+}
+
+.floatingCard1 img{
+    height: 80%;
+    width: 80%;
+}
+
+.floatingCard2 {
+    top: 0;
+    right: 0;
+}
+
+.floatingCard3 {
+    top: 5%;
+    left: 0;
+}
+
+.floatingCard4 {
+    bottom: 0;
+    right: 0;
+}
+
+.content {
+    height: fit-content;
+    width: fit-content;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .5vw;
+}
+
+.content h3,
+.content h1 {
+    color: white;
+}
+
+.content h1 {
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 4vw;
+    letter-spacing: -1px;
+}
+
+.signUp , .logIn{
+    text-decoration: none;
+    border: none;  
+    padding: 1vw 10vw;
+    border-radius: 15vw;
+}
+
+.signUp{
+    background-color: #D355D3;
+}
+
+.logIn{
+    background-color: #5590D3;
+}
