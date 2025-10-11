@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+
+<body>
+    <main>
+        <div class="innerBox">
+            <div class="layer">
+                <div class="left">
+                    <h1>Sign Up</h1>
+                    <p>or</p>
+                    <p>Already have a account? <a href="login.html">Log In</a></p>
+                </div>
+                <div class="right">
+                    <div class="form_box">
+                        <p>Sign Up by filling out this form</p>
+                        <div class="fullNameWrapper">
+                            <p>Full Name</p>
+                            <input type="text" class="fullName" placeholder="Enter your Full Name">
+                        </div>
+                        <div class="phoneNumberWrapper">
+                            <p>Phone Number</p>
+                            <input type="text" class="phoneNumber" placeholder="Enter your Phone Number">
+                        </div>
+                        <div class="passwordWrapper">
+                            <p>Password</p>
+                            <input type="password" class="password" placeholder="Enter your Password">
+                            <p>Use 8 or more characters with a mix of letters, numbers & symbols</p>
+                        </div>
+                        <div class="genderWrapper">
+                            <p>What's Your Gender?</p>
+                            <div class="genderOptions">
+                                <label>
+                                    <input type="radio" name="gender" value="male" required>
+                                    <h4>Male</h4>
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="female" required>
+                                    Female
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="female" required>
+                                    Others
+                                </label>
+                            </div>
+                        </div>
+                        <div class="ageWrapper">
+                            <p>Age</p>
+                            <input type="text" class="phoneNumber" placeholder="Enter your Age">
+                            <p>Must be between 18 to 150</p>
+                        </div>
+                        <button type="submit" class="signUpSubmitBtn">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="signup.js"></script>
+</body>
+
+</html>

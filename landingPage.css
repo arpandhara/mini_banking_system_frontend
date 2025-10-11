@@ -120,6 +120,7 @@ main {
     border: none;  
     padding: 1vw 10vw;
     border-radius: 15vw;
+    cursor: pointer;
 }
 
 .signUp{
@@ -128,4 +129,9 @@ main {
 
 .logIn{
     background-color: #5590D3;
+}
+
+.content a{
+    text-decoration: none;
+    color: black;
 }

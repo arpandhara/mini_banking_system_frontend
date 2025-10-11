@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400;1,700&family=Doto:wght@100..900&family=Italiana&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway+Dots&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.innerBox {
+    height: 98%;
+    width: 99%;
+    border-radius: 30px;
+    background-color: black;
+    background-color: black;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(224, 29, 127, 0.5), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(224, 29, 127, 0.5), transparent 30%),
+        radial-gradient(circle at 30% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
+        /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.layer{
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    display: flex;
+}
+
+.left{
+    height: 100%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.left h1{
+    font-weight: 700;
+    color: white;
+}
+
+.left p{
+    color: white;
+    font-size: .8vw;
+}
+
+.right{
+    height: 100%;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1vw;
+}
+
+.form_box{
+    height: 99%;
+    width: 70%;
+    background-color: rgb(199, 199, 199);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    /* justify-content: center; */
+    color: black;
+    flex-direction: column;
+    gap: .8vw;
+    padding: 2vw;
+}
+
+.form_box p{
+    font-size: .8vw;
+}
+
+.fullNameWrapper{
+    margin-top: 2vw;
+    height: fit-content;
+    width: 100%;
+}
+
+.phoneNumberWrapper , .passwordWrapper , .genderWrapper , .ageWrapper{
+    height: fit-content;
+    width: 100%;
+}
+
+.form_box input{
+    border: 1px solid black;
+    color: black;
+    border-radius: 10px;
+    height: 5%;
+    width: 100%;
+    text-decoration: none;
+    background-color: transparent;
+    padding: 2vw 1vw;
+    margin-top: .5vw;
+}
+
+.genderWrapper {
+  font-family: Poppins, sans-serif;
+  color: #333;
+  margin: 20px 0;
+}
+
+.genderWrapper p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.genderOptions {
+  display: flex;
+  gap: 20px;
+}
+
+.genderOptions label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.genderOptions input[type="radio"] {
+  accent-color: #000000;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+}
+
+.signUpSubmitBtn{
+    border: none;
+    color: black;
+    padding: 1vw 15vw;
+    background-color: grey;
+    border-radius: 30px;
+}
