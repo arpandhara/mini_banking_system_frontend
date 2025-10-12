@@ -200,11 +200,11 @@ submitButton.addEventListener("click", async (e) => {
 
     if (result.signUp === true) {
       console.log('Signup successful!');
-      alert(result.message);
+      // alert(result.message);
       console.log('About to navigate to login.html');
+      window.location.href = "dashboard.html";  
       
       // Try immediate navigation first
-      window.location.href = "login.html";
     } else {
       console.log('Signup failed:', result.error);
       alert(`Error: ${result.error || 'Sign up failed. Please try again.'}`);

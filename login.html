@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="signup.css">
 </head>
+
 <body>
-    <h1>Login Page</h1>
-    <p>Welcome to the login page!</p>
-    <p><a href="signup.html">Back to Sign Up</a></p>
+    <main>
+        <div class="innerBox">
+            <div class="layer">
+                <div class="left">
+                    <h1>Log In</h1>
+                    <p>or</p>
+                    <p>Don't have a account? Create one <a href="signup.html">Sign Up</a></p>
+                </div>
+                <div class="right">
+                    <div class="form_box">
+                        <p>Log in by filling out this form</p>
+                        <div class="fullNameWrapper">
+                            <p>Full Name</p>
+                            <input type="text" class="fullName" placeholder="Enter your Full Name">
+                            <p class="error-message"></p>
+                        </div>
+                        <div class="userIdWrapper">
+                            <p>Bank Account Number(last 4 digits)</p>
+                            <input type="text" class="userId" placeholder="Enter your account number">
+                            <p class="error-message"></p>
+                        </div>
+                        <div class="passwordWrapper">
+                            <p>Password</p>
+                            <input type="password" class="password" placeholder="Enter your Password">
+                            <p class="error-message">Enter your preset password</p>
+                        </div>
+                        <a href="#" class="logInSubmitBtn disabled">Log In</a>
+                        <p>Forgot Password? <a href="forgotPass.html">Click here</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="login.js"></script>
 </body>
+
 </html>
