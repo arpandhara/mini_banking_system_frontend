@@ -1,0 +1,682 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400;1,700&family=Doto:wght@100..900&family=Italiana&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway+Dots&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.innerBox {
+    height: 98%;
+    width: 99%;
+    border-radius: 30px;
+    background-color: black;
+    background-color: black;
+    background-image:
+        radial-gradient(circle at 20% 50%, rgba(151, 31, 69, 0.771), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(151, 31, 69, 0.852), transparent 30%),
+        radial-gradient(circle at 20% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
+        /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    overflow: hidden;
+}
+
+.layer {
+    height: 100%;
+    width: 100%;
+}
+
+.navBar {
+    height: 12%;
+    width: 100%;
+    padding: .5vw;
+    /* border: 1px solid white; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.navLeft {
+    /* background-color: rebeccapurple; */
+    height: 100%;
+    width: 20%;
+    padding: .5vw;
+    display: flex;
+    color: white;
+    align-items: center;
+    /* justify-content: center; */
+}
+
+.navLeft img {
+    height: 5vw;
+    width: 5vw;
+}
+
+.userBasicInfo {
+    height: 100%;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: aliceblue; */
+    /* gap: -1vw; */
+}
+
+.hello {
+    margin-top: .4vw;
+    font-size: .8vw;
+    line-height: .4;
+}
+
+.userName {
+    font-size: 1.5vw;
+}
+
+.navRight {
+    /* background-color: antiquewhite; */
+    height: 100%;
+    width: 20%;
+    padding: .5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: .5vw;
+}
+
+.navRight h1 {
+    font-weight: 700;
+    font-family: "Rubik Mono One", monospace;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2vw;
+    color: white;
+}
+
+.wrapperNavRight {
+    /* background-color: black; */
+    height: 80%;
+    display: flex;
+    align-items: end;
+    justify-content: baseline;
+}
+
+.navRight img {
+    height: 4vw;
+    width: 4vw;
+    /* background-color: aliceblue; */
+}
+
+.dashboard {
+    height: 75%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    padding: .5vw;
+    display: flex;
+}
+
+.dock {
+    height: 12%;
+    width: 100%;
+    /* background-color: aqua; */
+    padding: .5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dockbox {
+    background-color: rgba(255, 255, 255, 0.15);
+
+    /* This is the magic property for the glass effect! ✨ */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    height: 100%;
+    width: 45%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dockbox a{
+    text-decoration: none;
+}
+
+.dockbox i{
+    color: rgb(156, 156, 156);
+    font-size: 3vw;
+}
+
+.dashboardLeft{
+    height: 100%;
+    width: 80%;
+    /* background-color: black; */
+    padding: 1vw .5vw 0vw .5vw;
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+}
+
+.dashboardRight{
+    height: 100%;
+    width: 30%;
+    /* background-color: red; */
+    /* padding: 1vw; */
+}
+
+.dashboardLeftUp{
+    height: 45%;
+    width: 100%;
+    display: flex;
+    /* background-color: rebeccapurple; */
+    gap: .5vw;
+}
+
+.balanceOfUser{
+    height: 100%;
+    width: 65%;
+    background-color: #242424;
+    border-radius: 12px;
+    position: relative;
+    display: flex;
+    overflow: hidden;
+}
+
+.balanceDown{
+    position: absolute;
+    bottom: -50px;
+    z-index: 100;
+}
+
+.balanceUp{
+    position: absolute;
+    top: -50px;
+    right: -10px;
+    z-index: 100;
+}
+
+.wire{
+    position: absolute;
+    right: 0;
+    top: 50px;
+    width: 50vw;
+}
+
+.layerOfBalanceUser{
+    height: 100%;
+    width: 100%;
+    /* background-color: black; */
+    z-index: 10000;
+}
+
+.textWrapperForBalanceUser{
+    color: white;
+    width: 50%;
+    /* background-color: rebeccapurple; */
+    padding: 2vw 1vw 1vw 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.balance{
+    font-size: 5vw;
+    font-weight: 600;
+    line-height: 1;
+    font-family: "Cambay", sans-serif;
+}
+
+.balance span{
+    font-family: "Cambay", sans-serif;
+}
+
+.textWrapperForBalanceUser p{
+    font-size: .7vw;
+    color: rgb(134, 134, 134);
+}
+
+.bankCard{
+    height: 100%;
+    width: 35%;
+    background-color: rgba(240, 248, 255, 0.09);    
+    background-image: url(assets/bankCard.svg);
+    background-position: center;
+    /* background-size: cover; */
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    color: white;
+}
+
+.bankCardContent{
+    width: 100%;
+    height: 30%;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    padding: 2vw;
+    gap: .8vw;
+    justify-content: center;
+}
+
+.otherDetails{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.otherDetails p{
+    font-size: .7vw;
+}
+
+.bankNumber h3{
+    font-size: 1.3vw;
+}
+
+.dashboardLeftdown{
+    width: 100%;
+    height: 55%;
+    /* background-color: aliceblue; */
+    display: flex;
+    gap: .5vw;
+}
+
+.dashboardLeftdownleft{
+    height: 100%;
+    width: 40%;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+}
+
+.incomeAndOutGoing{
+    height: 20%;
+    width: 100%;
+    /* background-color: aquamarine; */
+    display: flex;
+    color: white;
+    gap: .5vw;
+}
+
+.monthAndDate p{
+    font-size: .8vw;
+    color: rgb(187, 185, 185);
+    line-height: .6;
+}
+
+.dashboardLeftdownRight{
+    height: 100%;
+    width: 60%;
+    /* background-color: rebeccapurple; */
+}
+
+.incomeAndOutGoingBox{
+    width: 90%;
+    height: 100%;
+    background-color: #242424;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.incomeAndOutGoingBoxleft{
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.incomeAndOutGoingBoxright{
+    border-left: 1px solid white;
+    height: 100%;
+    width: 50%;
+    display: flex;
+    align-items: center ;
+    justify-content: center;
+    gap: 1vw;
+}
+
+.incomeAndOutGoingBoxleft p , .incomeAndOutGoingBoxright p{
+    font-size: .7vw;
+    color: rgb(173, 173, 173);
+}
+
+.incomeAndOutGoingBoxleft h3 , .incomeAndOutGoingBoxright h3{
+    font-size: 1.3vw;
+}
+
+.incomeAndOutGoingBox span{
+    font-family: "Cambay", sans-serif;
+    font-size: 1.6vw;
+}
+
+.savings{
+    height: 80%;
+    width: 100%;
+    background-color: #242424;
+    border-radius: 12px;
+    display: flex;
+    padding: .5vw;
+    gap: .5vw;
+}
+
+.savingsLeft{
+    height: 100%;
+    width: 85%;
+    /* background-color: rebeccapurple; */
+}
+
+.savingsRight{
+    height: 100%;
+    width: 15%;
+    background-color: #D9D9D9;
+    border-radius: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.savingsLeftUp{
+    width: 100%;
+    height: 10%;
+    /* background-color: red; */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: .3vw;
+}
+
+.savingsLeftUp h2{
+    color: white;
+    font-weight: 600;
+    font-size: 1.2vw;
+}
+
+.savingsLeftUp p{
+    font-size: .9vw;
+    font-weight: 600;
+    color: #489FCD;
+}
+
+.savingsLeftDown{
+    height: 90%;
+    width: 100%;    
+    /* background-color: rebeccapurple; */
+    padding: .3vw;
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+}
+
+.savingsLeftDownTop , .savingsLeftDownBottom{
+    height: 50%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.savingBoxes{
+    height: 100%;
+    width: 49%;
+    background-color: white;
+    border-radius: 13px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+    padding: .5vw;
+}
+
+.savingBoxesContent{
+    /* background-color: black; */
+    height: 60%;
+    width: 100%;
+    /* padding: .5vw; */
+}
+
+.savingsNameAndArrow{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* padding: .5vw; */
+}
+
+.savingsNameAndArrow p{
+    font-size: .7vw;
+    font-weight: 600;
+    color: rgb(139, 139, 139);
+}
+
+.totalSaved , .totalSaved span{
+    /* font-family: "Cambay", sans-serif; */
+    font-weight: 700;
+    font-size: 1.3vw;
+}
+
+.savingBoxesProgressBar{
+    width: 100%;
+    background-color: rgb(172, 170, 170);
+    height: 10%;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.progress{
+    height: 100%;
+    width: 50%;
+    background-color: #E0533D;
+}
+
+.savingBoxes2 .progress{
+    background-color: #E78C9D;
+}
+
+.savingBoxes3 .progress{
+    background-color: #EED868;
+}
+
+.savingBoxes4 .progress{
+    background-color: #377CC8;
+}
+
+.savingsLeftUp , .savingsLeftDown{
+    /* display: none; */
+}
+
+.no_savings_text{
+    color: white;
+    display: none;
+}
+
+.savingsLeft{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.people{
+    background-color: #242424;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    padding: .5vw;
+    display: flex;
+}
+
+.peopleLeft{
+    /* background-color: rebeccapurple; */
+    height: 100%;
+    width: 55%;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    /* justify-content: center; */
+}
+
+.peopleImageWrapper{
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+    /* background-color: rebeccapurple; */
+}
+
+
+.peopleLeft img{
+    /* background-color: beige; */
+    height: 100%;
+    width: 100%;
+    rotate: -10deg  ;
+}
+
+.peopleLeft h3{
+    font-weight: 500;
+    color: white;
+}
+
+.peopleLeft p{
+    font-size: .7vw;
+    color: white;
+}
+
+.peopleRight{
+    height: 100%;
+    width: 45%;
+    background-color: rgb(21, 21, 21);
+    border-radius: 15px;
+    padding: .5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.no_people_added{
+    font-size: .7vw;
+    color: white;
+    display: none;
+}
+
+.peopleCards{
+    height: 25%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    align-items: center;
+    padding: .1vw;
+    gap: .5vw;
+    /* justify-content: center; */
+    margin-top: .2vw;
+}
+
+.peoplepfp{
+    /* background-color: red; */
+    background-image: url(assets/people_male_friend.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 3.5vw;
+    width: 3.5vw;
+    border-radius: 50%;
+}
+
+.peopleOtherDetails{
+    height: 90%;
+    width: 75%;
+    /* background-color: #377CC8; */
+    color: white;
+}
+
+.peopleName{
+    font-weight: 500;
+    font-size: 1.3vw;
+}
+
+.peopleRelation{
+    font-weight: 400;
+    font-size: .8vw;
+}
+
+.peopleCards2 .peoplepfp{
+    background-image: url(assets/people_female_friend.svg);
+}
+
+.peopleCards3 .peoplepfp{
+    background-image: url(assets/people_female_friend_2.svg);
+}
+
+.peopleCards4 .peoplepfp{
+    background-image: url(assets/people_lady.svg);
+}
+
+.dashboardRight{
+    padding: 1vw 0vw 0vw 0vw;
+    /* background-color: rebeccapurple; */
+}
+
+.transactions{
+    height: 100%;
+    width: 100%;
+    background-color: #242424;
+    border-radius: 15px;
+    padding: .5vw;
+}
+
+.transactions h3{
+    color: #F46D6D;
+    font-size: 1.5vw;
+}
+
+.transaction_slides{
+    /* background-color: rebeccapurple; */
+    width: 100%;
+    min-height: 90%;
+    margin-top: .5vw;
+    overflow-y: scroll;
+}
+
+.transaction_slides::-webkit-scrollbar{
+    display: none;
+}
+
+.transaction_slides .slides{
+    height: 100%;
+    width: 100%;
+    background-color: red;
+}
