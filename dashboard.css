@@ -666,9 +666,14 @@ main {
 .transaction_slides{
     /* background-color: rebeccapurple; */
     width: 100%;
-    min-height: 90%;
+    height: 90%;
     margin-top: .5vw;
     overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    /* justify-content: center; */
+    gap: .7vw;
 }
 
 .transaction_slides::-webkit-scrollbar{
@@ -676,7 +681,74 @@ main {
 }
 
 .transaction_slides .slides{
-    height: 100%;
+    height: 15%;
     width: 100%;
-    background-color: red;
+    /* border: 1px solid red; */
+    display: flex;
+    gap: .5vw;
+}
+
+.slidesLeft{
+    height: 100%;
+    width: 65%;
+    background-color: white;
+    border-radius: 5px;
+    padding: .4vw;
+    display: flex;
+}
+
+.slidesRight p{
+    font-size: .9vw;
+    color: white;
+}
+
+.slidesRight .transactions_description{
+    font-size: .7vw;
+}
+
+.no_transaction{
+    color: white;
+}
+
+.no_transaction{
+    /* display: none; */
+}
+
+.slidesLeftName{
+    height: 100%;
+    width: 70%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+}
+
+.transaction_name{
+    font-size: 1.2vw;
+    font-weight: 600;
+}
+
+.transaction_type{
+    font-size: .7vw;
+}
+
+.transactionAmount{
+    height: 100%;
+    width: 30%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.transactionAmount h2{
+    font-size: 1.2vw;
+    font-weight: 600;
+    color: #E25C5C;
+}
+
+.amount{
+    font-weight: 600;
+    color: #E25C5C;
 }
