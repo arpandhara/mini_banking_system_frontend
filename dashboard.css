@@ -171,6 +171,9 @@ main {
 .dockbox i{
     color: rgb(156, 156, 156);
     font-size: 3vw;
+
+    transform: scale(1) translateY(0);
+    /* transition: all 0.2s ease-in-out; */
 }
 
 .dashboardLeft{
@@ -405,6 +408,7 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .savingsLeftUp{
@@ -457,6 +461,7 @@ main {
     flex-direction: column;
     gap: 1vw;
     padding: .5vw;
+    cursor: pointer;
 }
 
 .savingBoxesContent{
@@ -603,6 +608,9 @@ main {
     gap: .5vw;
     /* justify-content: center; */
     margin-top: .2vw;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 8px;
 }
 
 .peoplepfp{

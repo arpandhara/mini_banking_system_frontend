@@ -55,17 +55,15 @@ const validateAccountNumber = () => {
     }
 }
 
+// --- FIX 1: Simplified password validation for login ---
+// We only need to check if the field is empty, not if it's a complex new password.
 const validatePassword = () => {
-    const passwordRegex =
-        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordRegex.test(passwordInput.value)) {
-        passwordError.textContent =
-            "Password must be at least 8 characters long and contain at least one uppercase letter, one number, and one special character";
+    if (passwordInput.value.trim() === "") {
+        passwordError.textContent = "Password is required";
         passwordInput.classList.add("error");
         return false;
     } else {
-        passwordError.textContent =
-            "Use 8 or more characters with a mix of letters, numbers & symbols";
+        passwordError.textContent = "Enter your preset password"; // Reset to default message
         passwordInput.classList.remove("error");
         return true;
     }
@@ -75,7 +73,7 @@ const validatePassword = () => {
 const validateForm = () => {
     const isFullNameValid = validateFullName();
     const isAccountNumberValid = validateAccountNumber();
-    const isPassordValid = validatePassword();
+    const isPassordValid = validatePassword(); // This will now work correctly
 
     if (
         isFullNameValid &&
@@ -92,8 +90,7 @@ const validateForm = () => {
 }
 
 submitButton.addEventListener("click", async (e) => {
-    e.preventDefault();
-    e.stopPropagation();
+    e.preventDefault(); // This stops the <a> tag from "refreshing" the page
 
     if (submitButton.classList.contains('disabled')) {
         return;
@@ -125,14 +122,19 @@ submitButton.addEventListener("click", async (e) => {
         const result = await response.json();
 
         if (result.loggedIn == true) {
+            // Success! Redirect to the dashboard.
             window.location.href = "dashboard.html";
         } else {
+            // --- FIX 2: Removed alert() ---
+            // Show the error message in the password field's error label
             console.log('LogIn failed:', result.error);
-            alert(`Error: ${result.error || 'Log In failed. Please try again.'}`);
+            passwordError.textContent = result.error || 'Log In failed. Please try again.';
+            passwordInput.classList.add('error');
         }
     } catch (error) {
         console.error("Submission failed:", error);
-        alert("Could not connect to the server. Please try again later.");
+        // Show a generic error in the UI
+        passwordError.textContent = "Could not connect to server. Please try again.";
     }
 })
 
