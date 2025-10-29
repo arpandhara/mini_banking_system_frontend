@@ -297,6 +297,7 @@ main {
 
 .otherDetails p{
     font-size: .7vw;
+    text-transform: uppercase;
 }
 
 .bankNumber h3{

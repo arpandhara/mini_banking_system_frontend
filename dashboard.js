@@ -156,6 +156,11 @@ savingCards.forEach((card) => {
 });
 
 
+let totalBalance = document.querySelector(".balance");
+let accountNumber = document.querySelector(".bankNumber h3");
+let user_name = document.querySelector(".user_name");
+
+
 async function getDataForDashBoard() {
     try {
 
@@ -175,6 +180,14 @@ async function getDataForDashBoard() {
 
         const result = await response.json();
         console.log(result);
+
+        let totalBalanceAmount = result.total_balance
+        let bankNumber = result.userAccountNumber
+        let userName = result.username
+
+        totalBalance.textContent = String(`₹${totalBalanceAmount}`)
+        accountNumber.textContent = String(`3594 1899 3455   ${bankNumber}`)
+        user_name.textContent = String(userName)
 
     } catch (error) {
         console.log("Failed to feteched data for the user", error);
