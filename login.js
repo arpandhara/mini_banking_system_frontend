@@ -116,6 +116,7 @@ submitButton.addEventListener("click", async (e) => {
             headers: {
                 "Content-Type": "application/json",
             },
+            credentials: "include",
             body: JSON.stringify(userData)
         });
 

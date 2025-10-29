@@ -156,42 +156,119 @@ savingCards.forEach((card) => {
 });
 
 
-let totalBalance = document.querySelector(".balance");
-let accountNumber = document.querySelector(".bankNumber h3");
-let user_name = document.querySelector(".user_name");
+let totalBalanceEl = document.querySelector(".balance");
+let accountNumberEl = document.querySelector(".bankNumber h3");
+let cardUserNameEl = document.querySelector(".user_name");
+let navUserNameEl = document.querySelector(".navLeft .userName");
+let monthlyIncomeEl = document.querySelector(".incomeAndOutGoingBoxleftincome h3");
+let monthlyOutcomeEl = document.querySelector(".incomeAndOutGoingBoxright .incomeAndOutGoingBoxleftincome h3");
+let transactionSlidesContainer = document.querySelector(".transaction_slides");
+let noTransactionEl = document.querySelector(".no_transaction");
 
 
-async function getDataForDashBoard() {
-    try {
+function renderTransactions(transactions = []) {
+        // Clear the existing hard-coded slides
+        transactionSlidesContainer.innerHTML = '';
 
-        const response = await fetch("http://127.0.0.1:5000/api/dashboard-data", {
-            method: "GET",
-            credentials: "include"
-        })
-
-        if (!response.ok) {
-            const errorResult = await response.json();
-            console.error("Server error:", errorResult.error);
-            if (response.status === 401) {
-                window.location.href = "login.html";
-            }
+        if (transactions.length === 0) {
+            // Show the "No Transactions" message if the list is empty
+            noTransactionEl.style.display = 'block';
             return;
         }
 
-        const result = await response.json();
-        console.log(result);
+        // Hide the "No Transactions" message
+        noTransactionEl.style.display = 'none';
 
-        let totalBalanceAmount = result.total_balance
-        let bankNumber = result.userAccountNumber
-        let userName = result.username
+        // Loop through transactions (newest first) and create HTML
+        transactions.slice().reverse().forEach(tx => {
+            const isIncome = tx.amount > 0;
+            const amountClass = isIncome ? 'income' : 'outcome'; // You'll need to add .income { color: green; } to your CSS
+            const sign = isIncome ? '+' : '-';
+            const formattedAmount = Math.abs(tx.amount).toLocaleString('en-IN');
 
-        totalBalance.textContent = String(`₹${totalBalanceAmount}`)
-        accountNumber.textContent = String(`3594 1899 3455   ${bankNumber}`)
-        user_name.textContent = String(userName)
-
-    } catch (error) {
-        console.log("Failed to feteched data for the user", error);
+            const slideHtml = `
+            <div class="slides">
+                <div class="slidesLeft">
+                    <div class="slidesLeftName">
+                        <h1 class="transaction_name">${tx.name}</h1>
+                        <p class="transaction_type">${tx.type}</p>
+                    </div>
+                    <div class="transactionAmount">
+                        <h2 class="${amountClass}">${sign} ₹<span class="amount">${formattedAmount}</span></h2>
+                    </div>
+                </div>
+                <div class="slidesRight">
+                    <p class="transactions_date">${tx.date}</p>
+                    <p class="transactions_description">${tx.description || 'No Description'}</p>
+                </div>
+            </div>
+        `;
+            // Add the new slide HTML to the container
+            transactionSlidesContainer.innerHTML += slideHtml;
+        });
     }
-}
 
-getDataForDashBoard();
+
+async function getDataForDashBoard() {
+        try {
+
+            const response = await fetch("http://127.0.0.1:5000/api/dashboard-data", {
+                method: "GET",
+                credentials: "include"
+            })
+
+            if (!response.ok) {
+                const errorResult = await response.json();
+                console.error("Server error:", errorResult.error);
+                if (response.status === 401) {
+                    // Redirect to login if not authorized
+                    window.location.href = "login.html";
+                }
+                return;
+            }
+
+            const result = await response.json();
+            console.log("Backend Data:", result);
+
+            // --- UPDATED: Get all data from the backend result ---
+            const totalBalance = result.total_balance;
+            const bankNumber = result.userAccountNumber;
+            const userName = result.username;
+            const monthlyIncome = result.monthly_income;
+            const monthlyOutcome = result.monthly_outcome;
+            const allTransactions = result.all_transactions;
+            // --- (Savings and People data are in result.last_4_savings / result.last_4_people) ---
+
+
+            // --- UPDATED: Populate all elements with the new data ---
+
+            // Populate Total Balance
+            totalBalanceEl.textContent = `₹${totalBalance.toLocaleString('en-IN')}`;
+
+            // Populate Bank Account Number
+            accountNumberEl.textContent = `3594 1899 3455 ${bankNumber}`;
+
+            // Populate Bank Card User Name
+            cardUserNameEl.textContent = userName.toUpperCase();
+
+            // Populate Nav Bar User Name
+            navUserNameEl.textContent = userName;
+
+            // Populate Monthly Income
+            monthlyIncomeEl.innerHTML = `<span>₹ </span>${monthlyIncome.toLocaleString('en-IN')}`;
+
+            // Populate Monthly Outcome (it's a negative number, so use Math.abs)
+            monthlyOutcomeEl.innerHTML = `<span>₹ </span>${Math.abs(monthlyOutcome).toLocaleString('en-IN')}`;
+
+            // Populate the transactions list
+            renderTransactions(allTransactions);
+
+            // --- (Render Savings and People functions would go here if object structure was known) ---
+
+        } catch (error) {
+            console.log("Failed to fetch data for the user", error);
+        }
+    }
+
+// Run the function to get data when the page loads
+getDataForDashBoard()
