@@ -1,70 +1,85 @@
-// Wait for the DOM to be ready before running the script
+// Wait for the DOM to be ready
 document.addEventListener("DOMContentLoaded", () => {
 
-    // 1. Register the GSAP ScrollToPlugin
-    gsap.registerPlugin(ScrollToPlugin);
-
-    // 2. Select the elements
+    // 1. Select the elements
     const container = document.querySelector(".right");
-    const cards = document.querySelectorAll(".savingCards");
-    
-    // Check if we have cards to scroll to
+    const cards = gsap.utils.toArray(".savingCards");
+
     if (!container || cards.length === 0) {
-        console.warn("Savings scroll container or cards not found.");
         return;
     }
 
-    // 3. Set up scroll variables
-    let currentCardIndex = 0;
-    let isAnimating = false; // This is our "cooldown" flag
-    const animationDuration = 0.8; // How long the smooth scroll takes
-    const animationEase = "power2.inOut";
+    // 2. Set up animation variables
+    let isAnimating = false; // "Cooldown" flag
+    const overscrollAmount = 60; // How far (in px) to "stretch"
+    const animationDuration = 0.8;
 
-    // 4. Create the main scroll function
-    function scrollToCard(index) {
-        // Make sure we're not scrolling out of bounds
-        // gsap.utils.clamp() is a clean way to keep a value within a range
-        currentCardIndex = gsap.utils.clamp(0, cards.length - 1, index);
-
-        // Set the 'isAnimating' flag to true to prevent other scroll events
+    // 3. Create the "elastic" overscroll function
+    function playOverscrollEffect(direction) {
+        // If we are already animating, do nothing
+        if (isAnimating) return;
+        
         isAnimating = true;
 
-        // Animate the container's scrollTop property
-        gsap.to(container, {
-            duration: animationDuration,
-            scrollTo: {
-                y: cards[currentCardIndex].offsetTop, // Scroll to the top of the target card
-                autoKill: false // Prevents user scroll from interrupting the tween
-            },
-            ease: animationEase,
+        // Determine the direction to move the cards
+        const yOffset = direction === 'up' ? overscrollAmount : -overscrollAmount;
+
+        // Use a GSAP timeline to animate and spring back
+        const tl = gsap.timeline({
             onComplete: () => {
-                // Once the animation is done, reset the flag after a short delay
-                // This gives a brief "rest" at the card
-                setTimeout(() => {
-                    isAnimating = false;
-                }, 100); // 100ms cooldown
+                isAnimating = false; // Reset the flag
             }
         });
+
+        // 1. "Stretch" the cards
+        tl.to(cards, {
+            y: yOffset,
+            opacity: 0.5, // Make them fade slightly
+            duration: animationDuration / 2, // Half the duration
+            ease: "power2.out",
+            stagger: 0.03 // Animate them one by one
+        });
+
+        // 2. "Spring" them back to their original position
+        tl.to(cards, {
+            y: 0,
+            opacity: 1,
+            duration: animationDuration,
+            ease: "elastic.out(1, 0.5)", // The bouncy effect!
+            stagger: {
+                each: 0.03,
+                from: "end" // Spring back from the opposite direction
+            }
+        }, "-=0.3"); // Overlap the animations slightly
     }
 
-    // 5. Add the wheel event listener
-    container.addEventListener("wheel", (e) => {
-        // Prevent the default browser scroll
-        e.preventDefault();
 
-        // If we are already animating, ignore this scroll event
+    // 4. Add the wheel event listener
+    container.addEventListener("wheel", (e) => {
+        // If we are animating, block the default scroll
         if (isAnimating) {
+            e.preventDefault();
             return;
         }
 
-        // Check scroll direction (e.deltaY)
-        if (e.deltaY > 0) {
-            // Scrolling Down -> Go to next card
-            scrollToCard(currentCardIndex + 1);
-        } else if (e.deltaY < 0) {
-            // Scrolling Up -> Go to previous card
-            scrollToCard(currentCardIndex - 1);
-        }
-    });
+        // Get scroll properties
+        const scrollTop = container.scrollTop;
+        const scrollHeight = container.scrollHeight;
+        const clientHeight = container.clientHeight;
+        const scrollDirection = e.deltaY < 0 ? 'up' : 'down';
 
+        // Check if we're at the very top and scrolling up
+        if (scrollTop === 0 && scrollDirection === 'up') {
+            e.preventDefault(); // Stop the native browser "bounce"
+            playOverscrollEffect('up');
+        } 
+        // Check if we're at the very bottom and scrolling down
+        // (We use a 1px tolerance for safety)
+        else if (Math.abs(scrollHeight - scrollTop - clientHeight) < 1 && scrollDirection === 'down') {
+            e.preventDefault(); // Stop the native browser "bounce"
+            playOverscrollEffect('down');
+        }
+        
+        // If we're in the middle, do nothing and let the native scroll happen
+    });
 });

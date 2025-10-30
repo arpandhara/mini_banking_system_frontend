@@ -58,8 +58,7 @@ main {
 .right {
     height: 100%;
     width: 40%;
-    /* background-color: black; */
-    overflow-y: hidden;
+    overflow-y: scroll; /* <-- ADD THIS BACK */
     padding: 1vw;
 }
 
@@ -68,16 +67,15 @@ main {
 }
 
 .savingCards {
-    height: 30%;
+   height: 30%;
     width: 100%;
     background-color: #FF7773;
     border-radius: 30px;
-    margin-top: 1vw;
+    margin-top: .5vw; /* <-- ADD THIS BACK */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     overflow: hidden;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Added a shadow */
 }
 
 .savingCardsLayer {
