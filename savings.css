@@ -59,76 +59,134 @@ main {
     height: 100%;
     width: 40%;
     /* background-color: black; */
-    overflow-y: scroll;
+    overflow-y: hidden;
     padding: 1vw;
 }
 
-.right::-webkit-scrollbar{
+.right::-webkit-scrollbar {
     display: none;
 }
 
-.savingCards{
+.savingCards {
     height: 30%;
     width: 100%;
-    background-color: #FF7773   ;
+    background-color: #FF7773;
     border-radius: 30px;
-    margin-top: .5vw;
-    background-image: url(assets/red_savings_card3.png);
+    margin-top: 1vw;
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Added a shadow */
 }
 
-.savingCardsLayer{
+.savingCardsLayer {
     height: 100%;
     width: 100%;
     border-radius: 30px;
-    padding: 1vw;
-    /* backdrop-filter: blur(5px); */
+    padding: 1.5vw; /* Increased padding */
+    display: flex; /* Use flexbox */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: space-between; /* Space out child elements */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%); /* Add a gradient for readability */
+    backdrop-filter: blur(2px);
 }
 
-.savingsName{
+.savingsName {
     font-weight: 700;
-    font-size: 3vw;
+    font-size: 2.5vw; /* Adjusted size */
     color: white;
-    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.529);
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 }
 
-.savingsId{
-    color: rgb(121, 121, 121);
+/* --- NEW STYLES FOR REDESIGN --- */
+
+.progressInfo {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 1vw; 
+}
+
+.progressText {
+    display: flex;
+    align-items: flex-end;
+    gap: .5vw;
+}
+
+.savingsSaved {
     font-weight: 600;
-    font-size: .7vw;
-}
-
-.savingsSaved , .savingsTarget , .savingsSaved span , .savingsTarget span{
-    font-weight: 500;
+    font-size: 1.8vw;
     color: white;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.518);
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    line-height: 1;
 }
 
-.progress{
-    height: 10px;
+.savingsSaved span {
+    font-weight: 500;
+}
+
+.savingsTarget {
+    font-weight: 400;
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.8); /* Made target slightly transparent */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    line-height: 1.1;
+}
+
+.savingsTarget span {
+    font-weight: 400;
+}
+
+.savingsPercentage {
+    font-weight: 600;
+    font-size: 1.2vw;
+    color: white;
+}
+
+.progress {
+    height: 12px; /* Made it thicker */
     width: 100%;
-    background-color: white;
-    margin-top: 1vw;
+    background-color: rgba(255, 255, 255, 0.3); /* Softer background */
+    margin-top: .5vw; /* Spaced it from text */
     border-radius: 30px;
     overflow: hidden;
 }
 
-.totalProgress{
+.totalProgress {
     height: 100%;
-    width: 59%;
-    background-color: rgb(255, 41, 41);
+    /* Width should be set by JS or inline style */
+    background: linear-gradient(90deg, #ffffff 0%, #ffc1c1 100%); /* Prettier fill */
     border-radius: 10px;
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.7); /* Added a glow */
 }
 
-.see_more{
+.cardFooter {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1vw;
+}
+
+.savingsId {
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 500;
+    font-size: .8vw;
+}
+
+.see_more {
     border: none;
-    background-color: rgb(219, 214, 214);
-    color: rgb(0, 85, 255);
+    background-color: rgba(255, 255, 255, 0.9); /* Brighter button */
+    color: #c0392b; /* Match the red theme */
     padding: .7vw 2vw;
-    margin-top: .5vw;
+    margin-top: 0; /* Removed margin */
     border-radius: 15px;
     font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.see_more:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
