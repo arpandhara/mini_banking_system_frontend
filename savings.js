@@ -1,85 +1,49 @@
-// Wait for the DOM to be ready
-document.addEventListener("DOMContentLoaded", () => {
+const right = document.querySelector('.right');
+const cards = document.querySelectorAll('.savingCards');
 
-    // 1. Select the elements
-    const container = document.querySelector(".right");
-    const cards = gsap.utils.toArray(".savingCards");
+let lastScrollTop = 0;
 
-    if (!container || cards.length === 0) {
-        return;
-    }
-
-    // 2. Set up animation variables
-    let isAnimating = false; // "Cooldown" flag
-    const overscrollAmount = 60; // How far (in px) to "stretch"
-    const animationDuration = 0.8;
-
-    // 3. Create the "elastic" overscroll function
-    function playOverscrollEffect(direction) {
-        // If we are already animating, do nothing
-        if (isAnimating) return;
+right.addEventListener('scroll', function() {
+    const scrollTop = right.scrollTop;
+    const scrollDirection = scrollTop > lastScrollTop ? 'down' : 'up';
+    
+    const containerHeight = right.clientHeight;
+    const scrollHeight = right.scrollHeight;
+    
+    cards.forEach((card) => {
+        const rect = card.getBoundingClientRect();
+        const containerRect = right.getBoundingClientRect();
         
-        isAnimating = true;
-
-        // Determine the direction to move the cards
-        const yOffset = direction === 'up' ? overscrollAmount : -overscrollAmount;
-
-        // Use a GSAP timeline to animate and spring back
-        const tl = gsap.timeline({
-            onComplete: () => {
-                isAnimating = false; // Reset the flag
-            }
-        });
-
-        // 1. "Stretch" the cards
-        tl.to(cards, {
-            y: yOffset,
-            opacity: 0.5, // Make them fade slightly
-            duration: animationDuration / 2, // Half the duration
-            ease: "power2.out",
-            stagger: 0.03 // Animate them one by one
-        });
-
-        // 2. "Spring" them back to their original position
-        tl.to(cards, {
-            y: 0,
-            opacity: 1,
-            duration: animationDuration,
-            ease: "elastic.out(1, 0.5)", // The bouncy effect!
-            stagger: {
-                each: 0.03,
-                from: "end" // Spring back from the opposite direction
-            }
-        }, "-=0.3"); // Overlap the animations slightly
-    }
-
-
-    // 4. Add the wheel event listener
-    container.addEventListener("wheel", (e) => {
-        // If we are animating, block the default scroll
-        if (isAnimating) {
-            e.preventDefault();
-            return;
-        }
-
-        // Get scroll properties
-        const scrollTop = container.scrollTop;
-        const scrollHeight = container.scrollHeight;
-        const clientHeight = container.clientHeight;
-        const scrollDirection = e.deltaY < 0 ? 'up' : 'down';
-
-        // Check if we're at the very top and scrolling up
-        if (scrollTop === 0 && scrollDirection === 'up') {
-            e.preventDefault(); // Stop the native browser "bounce"
-            playOverscrollEffect('up');
-        } 
-        // Check if we're at the very bottom and scrolling down
-        // (We use a 1px tolerance for safety)
-        else if (Math.abs(scrollHeight - scrollTop - clientHeight) < 1 && scrollDirection === 'down') {
-            e.preventDefault(); // Stop the native browser "bounce"
-            playOverscrollEffect('down');
+        // Calculate position relative to container
+        const cardTop = rect.top - containerRect.top;
+        const cardBottom = rect.bottom - containerRect.top;
+        const cardCenter = (cardTop + cardBottom) / 2;
+        
+        let opacity = 1;
+        let scale = 1;
+        
+        // Fade out top cards
+        if (cardTop < containerHeight * 0.1) {
+            const fadeProgress = 1 - (cardTop / (containerHeight * 0.5));
+            opacity = 1 - (fadeProgress * 0.5);
+            scale = 1 - (fadeProgress * 0.1);
         }
         
-        // If we're in the middle, do nothing and let the native scroll happen
+        // Fade out bottom cards
+        if (cardBottom > containerHeight * 0.8) {
+            const fadeProgress = (cardBottom - containerHeight * 0.9) / (containerHeight * 0.4);
+            opacity = 1 - (fadeProgress * 0.8);
+            scale = 1 - (fadeProgress * 0.2);
+        }
+        
+        // Apply transformations
+        gsap.to(card, {
+            opacity: Math.max(0.2, opacity),
+            scale: Math.max(0.9, scale),
+            duration: 0.3,
+            ease: "power2.out"
+        });
     });
+    
+    lastScrollTop = scrollTop;
 });

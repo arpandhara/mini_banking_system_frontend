@@ -56,10 +56,12 @@ main {
 }
 
 .right {
-    height: 100%;
-    width: 40%;
-    overflow-y: scroll; /* <-- ADD THIS BACK */
-    padding: 1vw;
+  height: 100%;
+  width: 40%;
+  overflow-y: scroll;
+  padding: 1vw;
+  scroll-behavior: smooth;
+  perspective: 1000px; /* Enables 3D depth */
 }
 
 .right::-webkit-scrollbar {
