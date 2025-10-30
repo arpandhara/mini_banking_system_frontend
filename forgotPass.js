@@ -80,10 +80,10 @@ submitButton.addEventListener("click", async (e) => {
 
         const result = await response.json();
 
-        if(result.isWhatsapp == true){
+        if(result.isSMSSent == true){ // Changed from isWhatsapp
             alert(result.message);
         }else{
-            alert(`Error : ${result.message} || 'WhattsApp not found'`);
+            alert(`Error : ${result.error || 'Could not send SMS.'}`); // Updated error message
         }
 
     } catch (error) {

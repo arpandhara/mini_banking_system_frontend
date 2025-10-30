@@ -46,92 +46,89 @@ main {
 .layer {
     height: 100%;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0);
-    position: relative;
-    padding: 1vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
 }
 
-.floatingCard {
-    position: absolute;
-    height: 40%;
+.left {
+    height: 100%;
+    width: 60%;
+    /* background-color: rebeccapurple; */
+}
+
+.right {
+    height: 100%;
     width: 40%;
+    /* background-color: black; */
+    overflow-y: scroll;
+    padding: 1vw;
 }
 
-.floatingCard img {
+.right::-webkit-scrollbar{
+    display: none;
+}
+
+.savingCards{
+    height: 30%;
+    width: 100%;
+    background-color: #FF7773   ;
+    border-radius: 30px;
+    margin-top: .5vw;
+    background-image: url(assets/red_savings_card3.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    overflow: hidden;
+}
+
+.savingCardsLayer{
     height: 100%;
     width: 100%;
-}
-
-.floatingCard1 {
-    bottom: 0%;
-    left: 0;
-}
-
-.floatingCard1 img{
-    height: 80%;
-    width: 80%;
-}
-
-.floatingCard2 {
-    top: 0;
-    right: 0;
-}
-
-.floatingCard3 {
-    top: 5%;
-    left: 0;
-}
-
-.floatingCard4 {
-    bottom: 0;
-    right: 0;
-}
-
-.content {
-    height: fit-content;
-    width: fit-content;
+    border-radius: 30px;
     padding: 1vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: .5vw;
+    /* backdrop-filter: blur(5px); */
 }
 
-.content h3,
-.content h1 {
+.savingsName{
+    font-weight: 700;
+    font-size: 3vw;
     color: white;
+    text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.529);
 }
 
-.content h1 {
-    font-family: "Rubik Mono One", monospace;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 4vw;
-    letter-spacing: -1px;
+.savingsId{
+    color: rgb(121, 121, 121);
+    font-weight: 600;
+    font-size: .7vw;
 }
 
-.signUp , .logIn{
-    text-decoration: none;
-    border: none;  
-    padding: 1vw 10vw;
-    border-radius: 15vw;
-    cursor: pointer;
+.savingsSaved , .savingsTarget , .savingsSaved span , .savingsTarget span{
+    font-weight: 500;
+    color: white;
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.518);
 }
 
-.signUp{
-    background-color: #D355D3;
+.progress{
+    height: 10px;
+    width: 100%;
+    background-color: white;
+    margin-top: 1vw;
+    border-radius: 30px;
+    overflow: hidden;
 }
 
-.logIn{
-    background-color: #5590D3;
+.totalProgress{
+    height: 100%;
+    width: 59%;
+    background-color: rgb(255, 41, 41);
+    border-radius: 10px;
 }
 
-.content a{
-    text-decoration: none;
-    color: black;
+.see_more{
+    border: none;
+    background-color: rgb(219, 214, 214);
+    color: rgb(0, 85, 255);
+    padding: .7vw 2vw;
+    margin-top: .5vw;
+    border-radius: 15px;
+    font-weight: 600;
 }
