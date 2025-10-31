@@ -47,6 +47,7 @@ main {
     height: 100%;
     width: 100%;
     display: flex;
+    position: relative;
 }
 
 .left {
@@ -189,4 +190,66 @@ main {
 .see_more:hover {
     transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.left{
+    /* background-color: rebeccapurple; */
+    position: relative;
+}
+
+.addButton{
+    position: absolute;
+    height: 7vw;
+    width: 7vw;
+    background-color: #D9D9D9;
+    bottom: 10px;
+    left: 10px;
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.addButton img{
+    height: 4vw;
+}
+
+.dock {
+    height: 12%;
+    width: 100%;
+    /* background-color: aqua; */
+    padding: .5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: 8px;
+}
+
+.dockbox {
+    background-color: rgba(255, 255, 255, 0.15);
+
+    /* This is the magic property for the glass effect! ✨ */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    height: 100%;
+    width: 45%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dockbox a{
+    text-decoration: none;
+}
+
+.dockbox i{
+    color: rgb(156, 156, 156);
+    font-size: 3vw;
+
+    transform: scale(1) translateY(0);
+    /* transition: all 0.2s ease-in-out; */
 }
