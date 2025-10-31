@@ -17,6 +17,45 @@
                     <div class="addButton">
                         <img src="assets/savingsAddButton.svg" alt="">
                     </div>
+                    <div class="form_box">
+                        <p>Fill up to add a saving</p>
+                        <div class="fullNameWrapper">
+                            <p>Item Name</p>
+                            <input type="text" class="fullName" placeholder="Enter the Item Name">
+                            <p class="error-message"></p>
+                        </div>
+                        <div class="phoneNumberWrapper">
+                            <p>Target Amount</p>
+                            <input type="text" class="phoneNumber"
+                                placeholder="Enter your Target Amount you want to save">
+                            <p class="error-message"></p>
+                        </div>
+                        <div class="genderWrapper">
+                            <p>Color Code</p>
+                            <div class="genderOptions">
+                                <label>
+                                    <input type="radio" name="gender" value="male" required>
+                                    <h4>Red</h4>
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="female" required>
+                                    Blue
+                                </label>
+                                <label>
+                                    <input type="radio" name="gender" value="other" required>
+                                    Yellow
+                                </label>
+                            </div>
+                            <p class="error-message"></p>
+                        </div>
+                        <div class="ageWrapper">
+                            <p>Description</p>
+                            <textarea name="description" id="" class="description"
+                                placeholder="Enter your description here"></textarea>
+                            <!-- <p class="error-message">Must be between 18 to 150</p> -->
+                        </div>
+                        <a href="#" class="signUpSubmitBtn disabled">SAVE</a>
+                    </div>
                 </div>
                 <div class="right">
                     <div class="savingCards" style="background-image: url(assets/red_savings_card3.png);">
@@ -96,106 +135,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="savingCards" style="background-image: url(assets/yellow_savings_card.png);">
-                        <div class="savingCardsLayer">
-                            <div>
-                                <h1 class="savingsName">Vacation</h1>
-                            </div>
-                            <div>
-                                <div class="progressInfo">
-                                    <div class="progressText">
-                                        <h3 class="savingsSaved"><span>₹</span>75K</h3>
-                                        <p class="savingsTarget">of <span>₹</span>1L</p>
-                                    </div>
-                                    <p class="savingsPercentage">75%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="totalProgress"
-                                        style="width: 75%; background: linear-gradient(90deg, #ffffff 0%, #fde08d 100%); box-shadow: 0 0 10px rgba(253, 224, 141, 0.7);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardFooter">
-                                <p class="savingsId">#1023</p>
-                                <button class="see_more" style="color: #f39c12;">SEE MORE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="savingCards" style="background-image: url(assets/yellow_savings_card.png);">
-                        <div class="savingCardsLayer">
-                            <div>
-                                <h1 class="savingsName">Vacation</h1>
-                            </div>
-                            <div>
-                                <div class="progressInfo">
-                                    <div class="progressText">
-                                        <h3 class="savingsSaved"><span>₹</span>75K</h3>
-                                        <p class="savingsTarget">of <span>₹</span>1L</p>
-                                    </div>
-                                    <p class="savingsPercentage">75%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="totalProgress"
-                                        style="width: 75%; background: linear-gradient(90deg, #ffffff 0%, #fde08d 100%); box-shadow: 0 0 10px rgba(253, 224, 141, 0.7);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardFooter">
-                                <p class="savingsId">#1023</p>
-                                <button class="see_more" style="color: #f39c12;">SEE MORE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="savingCards" style="background-image: url(assets/yellow_savings_card.png);">
-                        <div class="savingCardsLayer">
-                            <div>
-                                <h1 class="savingsName">Vacation</h1>
-                            </div>
-                            <div>
-                                <div class="progressInfo">
-                                    <div class="progressText">
-                                        <h3 class="savingsSaved"><span>₹</span>75K</h3>
-                                        <p class="savingsTarget">of <span>₹</span>1L</p>
-                                    </div>
-                                    <p class="savingsPercentage">75%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="totalProgress"
-                                        style="width: 75%; background: linear-gradient(90deg, #ffffff 0%, #fde08d 100%); box-shadow: 0 0 10px rgba(253, 224, 141, 0.7);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardFooter">
-                                <p class="savingsId">#1023</p>
-                                <button class="see_more" style="color: #f39c12;">SEE MORE</button>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="savingCards" style="background-image: url(assets/yellow_savings_card.png);">
-                        <div class="savingCardsLayer">
-                            <div>
-                                <h1 class="savingsName">Vacation</h1>
-                            </div>
-                            <div>
-                                <div class="progressInfo">
-                                    <div class="progressText">
-                                        <h3 class="savingsSaved"><span>₹</span>75K</h3>
-                                        <p class="savingsTarget">of <span>₹</span>1L</p>
-                                    </div>
-                                    <p class="savingsPercentage">75%</p>
-                                </div>
-                                <div class="progress">
-                                    <div class="totalProgress"
-                                        style="width: 75%; background: linear-gradient(90deg, #ffffff 0%, #fde08d 100%); box-shadow: 0 0 10px rgba(253, 224, 141, 0.7);">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="cardFooter">
-                                <p class="savingsId">#1023</p>
-                                <button class="see_more" style="color: #f39c12;">SEE MORE</button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="dock">
                     <div class="dockbox">
@@ -210,8 +149,12 @@
         </div>
     </main>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js" integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js" integrity="sha512-+LXqbM6YLduaaxq6kNcjMsQgZQUTdZp7FTaArWYFt1nxyFKlQSMdIF/WQ/VgsReERwRD8w/9H9cahFx25UDd+g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"
+        integrity="sha512-NcZdtrT77bJr4STcmsGAESr06BYGE8woZdSdEgqnpyqac7sugNO+Tr4bGwGF3MsnEkGKhU2KL2xh6Ec+BqsaHA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollTrigger/1.0.6/ScrollTrigger.min.js"
+        integrity="sha512-+LXqbM6YLduaaxq6kNcjMsQgZQUTdZp7FTaArWYFt1nxyFKlQSMdIF/WQ/VgsReERwRD8w/9H9cahFx25UDd+g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="savings.js"></script>
 </body>
 
