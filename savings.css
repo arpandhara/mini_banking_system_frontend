@@ -212,6 +212,10 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
+    
+    /* --- FIX: Added z-index and cursor --- */
+    z-index: 10;
+    cursor: pointer; 
 }
 
 .addButton img{
