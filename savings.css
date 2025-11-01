@@ -372,6 +372,7 @@ main {
     height: 8vw;
     margin-top: 1vw;
     padding: .5vw;
+    resize: none;
 }
 
 .description::-webkit-scrollbar{

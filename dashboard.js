@@ -82,6 +82,7 @@ dockIcons.forEach((icon) => {
 
 
 const savingsAddButton = document.querySelector(".savingsRight");
+const savingsSeeAllButton = document.querySelector(".savingsSeeAll"); // Selected "See All"
 
 // 2. Animate on mouse enter
 savingsAddButton.addEventListener("mouseenter", () => {
@@ -104,6 +105,15 @@ savingsAddButton.addEventListener("mouseleave", () => {
     });
 });
 
+// --- Add click listeners for savings page redirection ---
+savingsAddButton.addEventListener("click", () => {
+    window.location.href = "savings.html";
+});
+
+savingsSeeAllButton.addEventListener("click", () => {
+    window.location.href = "savings.html";
+});
+// --- END of new click listeners ---
 
 
 const peopleCards = document.querySelectorAll(".peopleCards");
@@ -132,28 +142,30 @@ peopleCards.forEach((card) => {
 });
 
 
-// This is the animation for the saving cards
-const savingCards = document.querySelectorAll(".savingBoxes");
+// This function will be called AFTER the dynamic cards are rendered
+function addSavingCardAnimations() {
+    const savingCards = document.querySelectorAll(".savingBoxes");
 
-savingCards.forEach((card) => {
-    card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-            y: -5,
-            scale: 1.02,
-            duration: 0.2,
-            ease: "power1.out"
+    savingCards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+            gsap.to(card, {
+                y: -5,
+                scale: 1.02,
+                duration: 0.2,
+                ease: "power1.out"
+            });
+        });
+
+        card.addEventListener("mouseleave", () => {
+            gsap.to(card, {
+                y: 0,
+                scale: 1,
+                duration: 0.2,
+                ease: "power1.out"
+            });
         });
     });
-
-    card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-            y: 0,
-            scale: 1,
-            duration: 0.2,
-            ease: "power1.out"
-        });
-    });
-});
+}
 
 
 // --- Select all elements to be populated ---
@@ -164,10 +176,9 @@ let navUserNameEl = document.querySelector(".navLeft .userName");
 let monthlyIncomeEl = document.querySelector(".incomeAndOutGoingBoxleftincome h3");
 let monthlyOutcomeEl = document.querySelector(".incomeAndOutGoingBoxright .incomeAndOutGoingBoxleftincome h3");
 let transactionSlidesContainer = document.querySelector(".transaction_slides");
-// We no longer need to select noTransactionEl here
 
 // Select elements for savings
-let savingsContentEl = document.querySelector(".savingsLeftDown");
+let savingsContentEl = document.querySelector(".savingsLeftDown"); // This is the container
 let savingsHeaderEl = document.querySelector(".savingsLeftUp");
 let noSavingsEl = document.querySelector(".no_savings_text");
 
@@ -246,20 +257,67 @@ function renderTransactions(transactions = []) {
     });
 }
 
-/**
- * Shows or hides the savings cards based on data.
- * @param {Array} savings 
- */
+// 
+// --- THIS IS THE JAVASCRIPT FIX ---
+// This function creates the card HTML to match your old hardcoded style
+//
+function createDashboardCardHTML(saving) {
+    const { name, saved_amount, target_amount, color_code } = saving;
+    const percentage = target_amount > 0 ? (saved_amount / target_amount) * 100 : 0;
+
+    // Simplified currency formatting for the small card
+    const formattedSaved = formatToIndianCurrency(saved_amount);
+
+    // Map color_code to progress bar style
+    const colorMap = {
+        'red': '#E0533D',
+        'blue': '#377CC8',
+        'yellow': '#EED868'
+    };
+    // Default color
+    const progressColor = colorMap[color_code] || '#E0533D'; 
+
+    return `
+        <div class="savingBoxes">
+            <div class="savingBoxesContent">
+                <div class="savingsNameAndArrow">
+                    <p class="savingsName">${name}</p>
+                    <img src="assets/Expand_right.svg" alt="">
+                </div>
+                <h2 class="totalSaved"><span>₹</span>${formattedSaved}</h2>
+            </div>
+            <div class="savingBoxesProgressBar">
+                <div class="progress" style="width: ${percentage}%; background-color: ${progressColor};"></div>
+            </div>
+        </div>
+    `;
+}
+
+// 
+// --- THIS IS THE JAVASCRIPT FIX ---
+// This function now dynamically renders the cards instead of toggling them
+//
 function renderSavings(savings = []) {
     if (savings.length === 0) {
         savingsContentEl.style.display = 'none';
         savingsHeaderEl.style.display = 'none';
         noSavingsEl.style.display = 'block';
     } else {
-        savingsContentEl.style.display = 'flex';
+        savingsContentEl.style.display = 'grid'; // This is our flex-wrap container
         savingsHeaderEl.style.display = 'flex';
         noSavingsEl.style.display = 'none';
-        // (Note: This just shows the hard-coded cards. A full implementation would render them dynamically)
+        
+        // Clear any old hardcoded content
+        savingsContentEl.innerHTML = ''; 
+        
+        // Loop through the (max 4) savings and add them
+        // The backend already sliced them to [-4:], so we just render
+        savings.forEach(saving => {
+            savingsContentEl.innerHTML += createDashboardCardHTML(saving);
+        });
+
+        // IMPORTANT: Add hover animations to the new cards
+        addSavingCardAnimations();
     }
 }
 
@@ -317,7 +375,7 @@ async function getDataForDashBoard() {
             totalBalanceEl.textContent = `₹${totalBalance.toLocaleString('en-IN')}`;
 
             // Populate Bank Account Number
-            accountNumberEl.textContent = `3594 1899 3550 ${bankNumber}`; // I corrected a typo here, 3455 -> 3550, update as needed
+            accountNumberEl.textContent = `3594 1899 3550 ${bankNumber}`;
 
             // Populate Bank Card User Name
             cardUserNameEl.textContent = userName.toUpperCase();
@@ -334,7 +392,7 @@ async function getDataForDashBoard() {
 
             // --- Render dynamic lists ---
             renderTransactions(allTransactions);
-            renderSavings(last4Savings);
+            renderSavings(last4Savings); // This will now render dynamically
             renderPeople(last4People);
 
         } catch (error) {
