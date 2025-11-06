@@ -124,6 +124,19 @@ const formBox = document.querySelector('.form_box');
 const addButton = document.querySelector('.addButton');
 const noSavingsMessage = document.querySelector('.no_savings');
 
+// --- NEW Details Box Elements ---
+const detailsBox = document.querySelector('.details_box');
+const detailsBackBtn = document.querySelector('.details_back_btn');
+const detailsName = document.querySelector('.details_name');
+const detailsSavedAmount = document.querySelector('.details_saved_amount');
+const detailsTargetAmount = document.querySelector('.details_target_amount');
+const detailsPercentage = document.querySelector('.details_percentage');
+const detailsProgressFill = document.querySelector('.details_progress_fill');
+const detailsDescription = document.querySelector('.details_description');
+const detailsId = document.querySelector('.details_id');
+const detailsDeleteBtn = document.querySelector('.details_delete_btn'); 
+
+
 // Form elements
 const submitButton = document.querySelector('.signUpSubmitBtn');
 const itemNameInput = document.querySelector('.itemName');
@@ -137,51 +150,106 @@ const targetAmountError = targetAmountInput.nextElementSibling;
 const colorError = document.querySelector('.genderWrapper .error-message');
 
 // --- State ---
-// GSAP timeline now handles the initial appearance,
-// so we just set the logical state.
-let isFormVisible = true;
+let isFormVisible = true; // GSAP timeline shows it, so this is true
 gsap.set(addButton.querySelector('img'), { rotate: 45 }); // Match initial state
+gsap.set(detailsBox, { autoAlpha: 0, xPercent: -20 }); // Set initial state for details box
 
-// --- Form Toggle Logic ---
+// --- NEW Form & Details Box Logic ---
+
+function showForm() {
+    hideDetailsBox(); // Hide details if open
+    formBox.style.display = 'flex';
+    gsap.to(formBox, {
+        autoAlpha: 1,
+        xPercent: 0,
+        duration: 0.5,
+        ease: "back.out(1.7)"
+    });
+    gsap.to(addButton.querySelector('img'), {
+        rotate: 45,
+        duration: 0.3,
+        ease: 'power1.out'
+    });
+    isFormVisible = true;
+}
+
+function hideForm() {
+    gsap.to(formBox, {
+        autoAlpha: 0,
+        xPercent: -20,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+            formBox.style.display = 'none';
+        }
+    });
+    gsap.to(addButton.querySelector('img'), {
+        rotate: 0,
+        duration: 0.3,
+        ease: 'power1.out'
+    });
+    isFormVisible = false;
+}
+
 function toggleForm() {
-    isFormVisible = !isFormVisible;
-
     if (isFormVisible) {
-        // --- SHOW THE FORM ---
-        formBox.style.display = 'flex'; // Make it available for GSAP
-        gsap.to(formBox, {
-            autoAlpha: 1, // Fades in and sets visibility: visible
-            xPercent: 0,
-            duration: 0.5,
-            ease: "back.out(1.7)" // Bouncy ease
-        });
-        gsap.to(addButton.querySelector('img'), {
-            rotate: 45,
-            duration: 0.3,
-            ease: 'power1.out'
-        });
+        hideForm();
     } else {
-        // --- HIDE THE FORM ---
-        gsap.to(formBox, {
-            autoAlpha: 0, // Fades out and sets visibility: hidden
-            xPercent: -20,
-            duration: 0.4,
-            ease: 'power2.in', // Ease in for hiding
-            onComplete: () => {
-                // Set display: none after animation for performance
-                formBox.style.display = 'none';
-            }
-        });
-        gsap.to(addButton.querySelector('img'), {
-            rotate: 0,
-            duration: 0.3,
-            ease: 'power1.out'
-        });
+        showForm();
     }
 }
 
-// Add click listener
+function showDetailsBox(data) {
+    hideForm(); // Hide form if open
+
+    // Populate Data
+    detailsName.textContent = data.name;
+    detailsSavedAmount.innerHTML = `<span>₹</span>${formatCurrency(data.saved)}`;
+    detailsTargetAmount.innerHTML = `of <span>₹</span>${formatCurrency(data.target)}`;
+    detailsDescription.textContent = data.description || "No description provided.";
+    detailsId.textContent = `#${data.id.split('_')[1]}`;
+    detailsDeleteBtn.dataset.id = data.id
+
+    const percentage = data.target > 0 ? (data.saved / data.target) * 100 : 0;
+    detailsPercentage.textContent = `${percentage.toFixed(0)}%`;
+    detailsProgressFill.style.width = `${percentage}%`;
+
+    // Apply Theme
+    detailsBox.classList.remove('theme-red', 'theme-blue', 'theme-yellow');
+    detailsBox.classList.add(`theme-${data.color}`);
+
+    // Show Box
+    detailsBox.style.display = 'flex';
+    gsap.to(detailsBox, {
+        autoAlpha: 1,
+        xPercent: 0,
+        duration: 0.5,
+        ease: "back.out(1.7)"
+    });
+}
+
+function hideDetailsBox() {
+    gsap.to(detailsBox, {
+        autoAlpha: 0,
+        xPercent: -20,
+        duration: 0.4,
+        ease: 'power2.in',
+        onComplete: () => {
+            detailsBox.style.display = 'none';
+        }
+    });
+}
+
+// Add click listener for Add Button
 addButton.addEventListener('click', toggleForm);
+
+// Add click listener for Details Back Button
+detailsBackBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    hideDetailsBox();
+    // Optionally, show the form again if you prefer
+    // showForm();
+});
 
 
 // --- Form Validation ---
@@ -246,20 +314,22 @@ colorInputs.forEach(input => input.addEventListener('change', validateForm));
 // --- API & Rendering Logic ---
 
 function formatCurrency(num) {
-    if (num >= 10000000) { // Crores
-        return (num / 10000000).toFixed(1).replace('.0', '') + 'Cr';
+    // Convert to number just in case it's a string
+    const number = Number(num); 
+    if (number >= 10000000) { // Crores
+        return (number / 10000000).toFixed(1).replace('.0', '') + 'Cr';
     }
-    if (num >= 100000) { // Lakhs
-        return (num / 100000).toFixed(1).replace('.0', '') + 'L';
+    if (number >= 100000) { // Lakhs
+        return (number / 100000).toFixed(1).replace('.0', '') + 'L';
     }
-    if (num >= 1000) { // Thousands
-        return (num / 1000).toFixed(1).replace('.0', '') + 'K';
+    if (number >= 1000) { // Thousands
+        return (number / 1000).toFixed(1).replace('.0', '') + 'K';
     }
-    return num.toString();
+    return number.toString();
 }
 
 function createCardHTML(saving) {
-    const { name, saved_amount, target_amount, saving_id, color_code } = saving;
+    const { name, saved_amount, target_amount, saving_id, color_code, description } = saving;
 
     const percentage = target_amount > 0 ? (saved_amount / target_amount) * 100 : 0;
     const formattedSaved = formatCurrency(saved_amount);
@@ -288,6 +358,8 @@ function createCardHTML(saving) {
 
     const theme = colorMap[color_code] || colorMap['red']; // Default to red
 
+    // --- UPDATED: Added data-* attributes to the button ---
+    // Note: Use encodeURIComponent for description to handle special characters
     return `
         <div class="savingCards" style="background-image: url(${theme.img});">
             <div class="savingCardsLayer">
@@ -310,7 +382,15 @@ function createCardHTML(saving) {
                 </div>
                 <div class="cardFooter">
                     <p class="savingsId">#${saving_id.split('_')[1]}</p>
-                    <button class="see_more" style="color: ${theme.btnColor};">SEE MORE</button>
+                    <button class="see_more" 
+                            style="color: ${theme.btnColor};"
+                            data-name="${name}"
+                            data-saved="${saved_amount}"
+                            data-target="${target_amount}"
+                            data-id="${saving_id}"
+                            data-color="${color_code}"
+                            data-description="${encodeURIComponent(description || '')}"
+                    >SEE MORE</button>
                 </div>
             </div>
         </div>
@@ -341,6 +421,28 @@ function renderSavingsCards(savingsArray) {
         });
     }
 }
+
+// --- NEW: Event Delegation for "SEE MORE" clicks ---
+rightContainer.addEventListener('click', function(e) {
+    // Check if the clicked element is the .see_more button
+    if (e.target.classList.contains('see_more')) {
+        const button = e.target;
+        const data = button.dataset; // This gets all data-* attributes
+
+        // Create an object to pass to the show function
+        const savingData = {
+            name: data.name,
+            saved: data.saved,
+            target: data.target,
+            id: data.id,
+            color: data.color,
+            description: decodeURIComponent(data.description) // Decode the description
+        };
+        
+        showDetailsBox(savingData);
+    }
+});
+
 
 async function fetchSavings() {
     try {
@@ -415,7 +517,7 @@ async function handleSubmit(e) {
             alert(`Error: ${result.error || 'Failed to save.'}`);
         } else {
             resetForm();
-            toggleForm(); // Hide form
+            hideForm(); // Hide form after successful save
             fetchSavings(); // Refresh the list
         }
 
@@ -425,10 +527,72 @@ async function handleSubmit(e) {
     }
 }
 
+
+/* Handles the click event for the "Delete Saving" button.*/
+
+async function handleDeleteSaving(e) {
+    e.preventDefault(); // Stop the <a> tag from navigating
+
+    // 1. Get the full ID from the button's dataset
+    const fullSavingId = e.target.dataset.id;
+    if (!fullSavingId) {
+        alert("Error: Could not find saving ID. Please try again.");
+        return;
+    }
+
+    // 2. Extract the short ID (e.g., "12345") for the backend
+    const shortSavingId = fullSavingId.split('_')[1];
+
+    // 3. Confirm with the user
+    const userConfirmed = confirm(
+        `Are you sure you want to permanently delete this saving goal: ${detailsName.textContent}?`
+    );
+
+    if (!userConfirmed) {
+        return; // User clicked "Cancel"
+    }
+
+    // 4. Prepare the payload for the backend
+    const payload = {
+        savingsId: shortSavingId
+    };
+
+    // 5. Send the request to the backend
+    try {
+        const response = await fetch("http://127.0.0.1:5000/api/savingsDelete", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            credentials: "include",
+            body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (!response.ok) {
+            // Show backend error
+            throw new Error(result.error || "Failed to delete saving.");
+        }
+
+        // 6. Success
+        alert(result.message || "Saving goal deleted!");
+        hideDetailsBox();   // Hide the details panel
+        fetchSavings();     // Refresh the list of cards
+
+    } catch (error) {
+        console.error("Delete saving error:", error);
+        alert(`An error occurred: ${error.message}`);
+    }
+}
+
 // --- Initial Load ---
 submitButton.addEventListener('click', handleSubmit);
+detailsDeleteBtn.addEventListener('click', handleDeleteSaving);
+
 document.addEventListener('DOMContentLoaded', () => {
     fetchSavings();
+    // hideForm(); // Start with the form hidden
 
     // Add Dock Icon Hover Animations
     const dockIcons = document.querySelectorAll(".dockbox i");

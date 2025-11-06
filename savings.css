@@ -54,6 +54,11 @@ main {
     height: 100%;
     width: 60%;
     /* background-color: rebeccapurple; */
+    position: relative;
+    padding: 1vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .right {
@@ -205,7 +210,14 @@ main {
     position: absolute;
     height: 7vw;
     width: 7vw;
-    background-color: #D9D9D9;
+    /* --- STYLE UPDATE --- */
+    background-color: white;
+    /* This is the magic property for the glass effect! ✨ */
+    /* backdrop-filter: blur(15px); */
+    /* -webkit-backdrop-filter: blur(10px); */
+    /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    /* --- END UPDATE --- */
     bottom: 10px;
     left: 10px;
     border-radius: 30px;
@@ -265,12 +277,14 @@ main {
 .form_box{
     height: fit-content;
     width: 70%;
+    /* --- STYLE REVERTED --- */
     background-color: rgb(199, 199, 199);
+    color: black;
+    /* --- END REVERT --- */
     border-radius: 30px;
     display: flex;
     align-items: center;
     /* justify-content: center; */
-    color: black;
     flex-direction: column;
     gap: .4vw;
     padding: 2vw;
@@ -279,6 +293,12 @@ main {
 
 .form_box p{
     font-size: .8vw;
+}
+
+/* --- NEW RULE for form title --- */
+.form_box p:first-of-type {
+    font-size: 1.1vw;
+    font-weight: 500;
 }
 
 .fullNameWrapper{
@@ -293,20 +313,27 @@ main {
 }
 
 .form_box input{
+    /* --- STYLE REVERTED --- */
     border: 1px solid black;
     color: black;
+    background-color: transparent;
+    /* --- END REVERT --- */
     border-radius: 10px;
     height: 5%;
     width: 100%;
     text-decoration: none;
-    background-color: transparent;
     padding: 2vw 1vw;
     margin-top: .5vw;
 }
 
+/* --- NEW RULE for placeholder --- */
+.form_box input::placeholder {
+    color: #555; /* Reverted to dark grey */
+}
+
 .genderWrapper {
   font-family: Poppins, sans-serif;
-  color: #333;
+  color: #333; 
   margin: 20px 0;
 }
 
@@ -331,7 +358,9 @@ main {
 }
 
 .genderOptions input[type="radio"] {
+  /* --- STYLE REVERTED --- */
   accent-color: #000000;
+  /* --- END REVERT --- */
   width: 16px;
   height: 16px;
   cursor: pointer;
@@ -339,7 +368,9 @@ main {
 
 .signUpSubmitBtn , .logInSubmitBtn , .forgotPassSubmitBtn{
     border: none;
+    /* --- STYLE REVERTED --- */
     color: black;
+    /* --- END REVERT --- */
     padding: 1vw 15vw;
     background-color: grey;
     border-radius: 30px;
@@ -365,16 +396,226 @@ main {
 }
 
 .description{
+    /* --- STYLE REVERTED --- */
     background-color: transparent;
+    border: 1px solid black;
+    color: black;
+    /* --- END REVERT --- */
     width: 100%;
     border-radius: 15px;
-    border: 1px solid black;
     height: 8vw;
     margin-top: 1vw;
     padding: .5vw;
     resize: none;
 }
 
+/* --- NEW RULE for placeholder --- */
+.description::placeholder {
+    color: #555; /* Reverted to dark grey */
+}
+
 .description::-webkit-scrollbar{
     display: none;
+}
+
+/* --- NEW STYLES FOR DETAILS BOX --- */
+.details_box {
+    height: fit-content;
+    width: 70%;
+    background-color: rgba(36, 36, 36, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    color: white;
+    border-radius: 30px;
+    padding: 1.5vw 2vw 2vw 2vw;
+    display: flex;
+    flex-direction: column;
+    gap: .8vw;
+    position: absolute; /* To allow GSAP transforms */
+}
+
+.details_back_btn {
+    position: absolute;
+    top: 1.5vw;
+    left: 2vw;
+    color: #9c9c9c;
+    text-decoration: none;
+    font-size: .9vw;
+    display: flex;
+    align-items: center;
+    gap: .2vw;
+    transition: color 0.2s ease;
+}
+
+.details_back_btn i {
+    font-size: 1.2vw;
+}
+
+.details_back_btn:hover {
+    color: white;
+}
+
+.details_name {
+    font-size: 2vw;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 1.5vw; /* Make space for back button */
+    line-height: 1.2;
+}
+
+.details_progress_info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: .5vw;
+}
+
+.details_progress_text {
+    display: flex;
+    align-items: flex-end;
+    gap: .5vw;
+}
+
+.details_saved_amount {
+    font-weight: 600;
+    font-size: 1.8vw;
+    color: white;
+    line-height: 1;
+}
+
+.details_saved_amount span {
+    font-weight: 500;
+}
+
+.details_target_amount {
+    font-weight: 400;
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.1;
+}
+
+.details_target_amount span {
+    font-weight: 400;
+}
+
+.details_percentage {
+    font-weight: 600;
+    font-size: 1.2vw;
+    color: white;
+}
+
+.details_progress_bar {
+    height: 12px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.3);
+    margin-top: .5vw;
+    border-radius: 30px;
+    overflow: hidden;
+}
+
+.details_progress_fill {
+    height: 100%;
+    width: 0%; /* Set by JS */
+    border-radius: 10px;
+    transition: width 0.5s ease;
+}
+
+.details_description_title {
+    font-weight: 500;
+    font-size: 1vw;
+    color: rgba(255, 255, 255, 0.8);
+    margin-top: .5vw;
+    margin-bottom: .2vw;
+}
+
+.details_description_box {
+    background-color: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    padding: .8vw;
+    max-height: 8vw;
+    overflow-y: auto;
+}
+
+.details_description_box::-webkit-scrollbar {
+    display: none;
+}
+
+.details_description {
+    font-size: .9vw;
+    color: white;
+    line-height: 1.5;
+}
+
+.details_actions {
+    display: flex;
+    gap: .8vw;
+    margin-top: 1vw;
+}
+
+.details_deposit_btn,
+.details_delete_btn {
+    flex: 1;
+    text-decoration: none;
+    color: white;
+    text-align: center;
+    padding: .8vw;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: .9vw;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.details_deposit_btn:hover,
+.details_delete_btn:hover {
+    transform: scale(1.03);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.details_id {
+    font-size: 0.8vw;
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    margin-top: .5vw;
+}
+
+/* --- THEME STYLES FOR DETAILS BOX --- */
+
+/* RED THEME */
+.details_box.theme-red .details_progress_fill {
+    background: linear-gradient(90deg, #ffffff 0%, #ffc1c1 100%);
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.7);
+}
+.details_box.theme-red .details_deposit_btn {
+    background-color: #c0392b;
+}
+.details_box.theme-red .details_delete_btn {
+    background-color: #5a1a14;
+}
+
+/* BLUE THEME */
+.details_box.theme-blue .details_progress_fill {
+    background: linear-gradient(90deg, #ffffff 0%, #a1c4fd 100%);
+    box-shadow: 0 0 10px rgba(100, 150, 255, 0.7);
+}
+.details_box.theme-blue .details_deposit_btn {
+    background-color: #2980b9;
+}
+.details_box.theme-blue .details_delete_btn {
+    background-color: #E25C5C; /* Default danger color */
+}
+
+/* YELLOW THEME */
+.details_box.theme-yellow .details_progress_fill {
+    background: linear-gradient(90deg, #ffffff 0%, #fde08d 100%);
+    box-shadow: 0 0 10px rgba(253, 224, 141, 0.7);
+}
+.details_box.theme-yellow .details_deposit_btn {
+    background-color: #f39c12;
+}
+.details_box.theme-yellow .details_delete_btn {
+    background-color: #E25C5C; /* Default danger color */
 }

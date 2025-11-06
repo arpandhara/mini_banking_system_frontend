@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400;1,700&family=Doto:wght@100..900&family=Italiana&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway+Dots&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+}
+
+main {
+    height: 100%;
+    width: 100%;
+    background-color: whitesmoke;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.innerBox {
+    height: 98%;
+    width: 99%;
+    border-radius: 30px;
+    background-color: black;
+    background-color: black;
+    background-image:
+        radial-gradient(circle at 20% 30%, rgba(224, 29, 127, 0.5), transparent 30%),
+        radial-gradient(circle at 80% 90%, rgba(224, 29, 127, 0.5), transparent 30%),
+        radial-gradient(circle at 30% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
+        radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
+        /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+}
+
+.layer{
+    height: 100%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    padding: .6vw;
+}
+
+.dock {
+    height: 12%;
+    width: 100%;
+    /* background-color: aqua; */
+    padding: .5vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dockbox {
+    background-color: rgba(255, 255, 255, 0.15);
+
+    /* This is the magic property for the glass effect! ✨ */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    height: 100%;
+    width: 45.5%;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.dockbox a{
+    text-decoration: none;
+}
+
+.dockbox i{
+    color: rgb(156, 156, 156);
+    font-size: 3vw;
+
+    transform: scale(1) translateY(0);
+    /* transition: all 0.2s ease-in-out; */
+}
+
+.contentDiv{
+    height: 88%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    display: flex;
+}
+
+.left{
+    height: 100%;
+    width: 65%;
+    /* background-color: aliceblue; */
+    padding: .5vw;
+    display: flex;
+    flex-direction: column;
+    gap: .5vw;
+}
+
+.right{
+    height: 100%;
+    width: 35%;
+    /* background-color: rebeccapurple; */
+    padding: .5vw;
+}
+
+.leftTopProfile{
+    width: 100%;
+    height: 80%;
+    background-color: rgba(255, 255, 255, 0.15);
+
+    /* This is the magic property for the glass effect! ✨ */
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(10px);
+    /* For Safari support */
+    border: 1px solid rgba(255, 255, 255, 0.107);
+    border-radius: 15px;
+}
+
+.leftDownPaymentOptions{
+    width: 100%;
+    height: 20%;
+    background-color: #242424;
+    border-radius: 15px;
+}
+
+.paymentWindow{
+    background-color: #242424;
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+}
+
+.headingUserInfo{
+    height: fit-content;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    margin-top: 1vw;
+    padding-left: 1vw;
+    border-bottom: 1px solid white;
+}
+
+.headingUserInfo h1{
+    font-weight: 600;
+    color: white;
+    font-size: 1.5vw;
+}
+
+.userProfilePicandOtherInfo{
+    height: 90%;
+    width: 100%;
+    /* background-color: rebeccapurple; */
+    padding: 1vw;
+    display: flex;
+    gap: .5vw;
+}
+
+.otherInfo{
+    height: 100%;
+    width: 80%;
+    /* background-color: red; */
+
+}
+
+.profilePic{
+    height: 13vw;
+    width: 13vw;
+    /* background-color: black; */
+    border-radius: 90%;
+    background-image: url(assets/people_female_friend.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center
+}
