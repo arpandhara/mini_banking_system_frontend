@@ -37,12 +37,12 @@ main {
         radial-gradient(circle at 30% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
         radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
         radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
-        /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
+    /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
-.layer{
+.layer {
     height: 100%;
     width: 100%;
     /* background-color: rebeccapurple; */
@@ -75,11 +75,11 @@ main {
     justify-content: space-around;
 }
 
-.dockbox a{
+.dockbox a {
     text-decoration: none;
 }
 
-.dockbox i{
+.dockbox i {
     color: rgb(156, 156, 156);
     font-size: 3vw;
 
@@ -87,14 +87,14 @@ main {
     /* transition: all 0.2s ease-in-out; */
 }
 
-.contentDiv{
+.contentDiv {
     height: 88%;
     width: 100%;
     /* background-color: rebeccapurple; */
     display: flex;
 }
 
-.left{
+.left {
     height: 100%;
     width: 65%;
     /* background-color: aliceblue; */
@@ -104,14 +104,14 @@ main {
     gap: .5vw;
 }
 
-.right{
+.right {
     height: 100%;
     width: 35%;
     /* background-color: rebeccapurple; */
     padding: .5vw;
 }
 
-.leftTopProfile{
+.leftTopProfile {
     width: 100%;
     height: 80%;
     background-color: rgba(255, 255, 255, 0.15);
@@ -124,7 +124,7 @@ main {
     border-radius: 15px;
 }
 
-.leftDownPaymentOptions{
+.leftDownPaymentOptions {
     width: 100%;
     height: 20%;
     /* background-color: #242424; */
@@ -132,17 +132,21 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    /* padding: .8vw; Added padding to the container */
+    /* padding: .8vw; */
+    /* Added padding to the container */
 }
 
-.paymentWindow{
+.paymentWindow {
+    /* --- RE-ADDED BACKGROUND COLOR --- */
     background-color: #242424;
     height: 100%;
     width: 100%;
     border-radius: 15px;
+    position: relative;
+    overflow: hidden; /* This is crucial for the slide-up animation */
 }
 
-.headingUserInfo{
+.headingUserInfo {
     height: fit-content;
     width: 100%;
     /* background-color: rebeccapurple; */
@@ -151,7 +155,7 @@ main {
     border-bottom: 1px solid white;
 }
 
-.headingUserInfo h1{
+.headingUserInfo h1 {
     font-weight: 600;
     color: white;
     font-size: 1.5vw;
@@ -160,9 +164,11 @@ main {
 /* --- Styles for 2-Column User Profile Section --- */
 
 .userProfilePicandOtherInfo {
-    height: calc(100% - 3vw - 2px); /* Fill space below heading */
+    height: calc(100% - 3vw - 2px);
+    /* Fill space below heading */
     width: 100%;
-    padding: 1vw 2vw; /* Added more padding */
+    padding: 1vw 2vw;
+    /* Added more padding */
     display: flex;
     justify-content: space-between;
     gap: 1.5vw;
@@ -179,7 +185,8 @@ main {
 }
 
 .profileInfo .userName {
-    font-size: 3vw; /* Made name bigger */
+    font-size: 3vw;
+    /* Made name bigger */
     font-weight: 600;
     color: white;
     line-height: 1.1;
@@ -188,8 +195,10 @@ main {
 /* 2x2 Grid container */
 .profileDetails {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* 2-column grid */
-    gap: 1.5vw 1vw; /* Row and column gap */
+    grid-template-columns: 1fr 1fr;
+    /* 2-column grid */
+    gap: 1.5vw 1vw;
+    /* Row and column gap */
 }
 
 /* Right Column */
@@ -205,14 +214,19 @@ main {
 
 /* The Profile Pic (FIXED) */
 .profilePic {
-    height: 12vw; /* Adjusted size */
-    width: 12vw; /* Adjusted size */
-    border-radius: 50%; /* PERFECT CIRCLE */
-    background-image: url(assets/people_female_friend.svg); /* Using existing asset */
+    height: 12vw;
+    /* Adjusted size */
+    width: 12vw;
+    /* Adjusted size */
+    border-radius: 50%;
+    /* PERFECT CIRCLE */
+    background-image: url(assets/people_female_friend.svg);
+    /* Using existing asset */
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border: 3px solid rgba(255, 255, 255, 0.3); /* Added a subtle border */
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    /* Added a subtle border */
 }
 
 .profileActions {
@@ -275,19 +289,25 @@ main {
 }
 
 .profile-btn.edit-btn {
-    background-color: rgba(85, 144, 211, 0.3); /* Blue glass */
+    background-color: rgba(85, 144, 211, 0.3);
+    /* Blue glass */
 }
+
 .profile-btn.edit-btn:hover {
-    background-color: rgba(85, 144, 211, 0.6); /* Brighter blue on hover */
+    background-color: rgba(85, 144, 211, 0.6);
+    /* Brighter blue on hover */
     box-shadow: 0 4px 15px rgba(85, 144, 211, 0.3);
     transform: translateY(-2px);
 }
 
 .profile-btn.password-btn {
-    background-color: rgba(224, 29, 127, 0.3); /* Pink/Red glass */
+    background-color: rgba(224, 29, 127, 0.3);
+    /* Pink/Red glass */
 }
+
 .profile-btn.password-btn:hover {
-    background-color: rgba(224, 29, 127, 0.6); /* Brighter pink on hover */
+    background-color: rgba(224, 29, 127, 0.6);
+    /* Brighter pink on hover */
     box-shadow: 0 4px 15px rgba(224, 29, 127, 0.3);
     transform: translateY(-2px);
 }
@@ -304,8 +324,9 @@ main {
     width: 100%;
     height: 100%;
     align-items: center;
-    justify-content: space-around;
+    /* justify-content: space-around;  REMOVED this */
     gap: 0.8vw; /* Added gap between buttons */
+    padding: 0 0.8vw; /* ADDED horizontal padding here */
 }
 
 .payment-option-btn {
@@ -315,39 +336,55 @@ main {
     justify-content: flex-start;
     text-decoration: none;
     color: white;
-    width: 100%; /* Make button fill grid cell */
+    /* width: 100%;  REPLACED this */
+    flex: 1; /* WITH this to force equal widths */
     height: 100%; /* Make button fill grid cell */
     transition: transform 0.2s ease;
 }
 
-.payment-option-btn:hover {
-    transform: scale(1.05); 
-}
+/* REMOVED hover from here */
 
 .payment-option-icon {
-    width: 100%; 
+    width: 100%;
     height: 100%;
-    border-radius: 20px; /* Rounded square */
+    border-radius: 20px;
+    /* Rounded square */
     display: flex;
-    flex-direction: column; /* Stack icon and text */
+    flex-direction: column;
+    /* Stack icon and text */
     align-items: center;
     justify-content: center;
-    gap: 0.5vw; /* Gap between icon and text */
-    padding: 1vw; /* Padding inside the button */
-    transition: background-color 0.2s ease, opacity 0.2s ease;
+    gap: 0.5vw;
+    /* Gap between icon and text */
+    padding: 1vw;
+    /* Padding inside the button */
+    transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.2s ease;
+
+    /* --- NEW --- */
+    position: relative;
+    /* Containing block for new elements */
+    overflow: hidden;
+    /* Clip the shine and borders */
+    z-index: 1;
+    /* Fixes stacking bugs */
+    transform: scale(1);
+    /* Base state for hover */
 }
 
-.payment-option-icon:hover {
-    opacity: 0.9; /* Universal hover effect */
+/* Ensure icon and text are above effects */
+.payment-option-icon i,
+.payment-option-icon p {
+    position: relative;
+    z-index: 3;
 }
 
 .payment-option-icon i {
-    font-size: 2.5vw; 
+    font-size: 2.5vw;
     color: white;
 }
 
 .payment-option-icon p {
-    font-size: 0.8vw; 
+    font-size: 0.8vw;
     font-weight: 500;
     text-align: center;
     line-height: 1.3;
@@ -356,17 +393,351 @@ main {
 
 /* --- FUNCTIONAL COLORS --- */
 .payment-option-icon.po-deposit {
-    background-color: #242424; /* Dark Green */
+    background-color: #2E7D32;
+    /* Dark Green */
 }
+
 .payment-option-icon.po-withdraw {
-    background-color: #242424; /* Dark Red */
+    background-color: #C62828;
+    /* Dark Red */
 }
+
 .payment-option-icon.po-pay {
-    background-color: #242424; /* Dark Blue */
+    background-color: #1565C0;
+    /* Dark Blue */
 }
+
 .payment-option-icon.po-info {
-    background-color: #242424; /* Dark Purple */
+    background-color: #4527A0;
+    /* Dark Purple */
 }
+
 .payment-option-icon.po-saving {
-    background-color: #242424; /* Dark Teal */
+    background-color: #00838F;
+    /* Dark Teal */
+}
+
+
+/* --- NEW STYLES FOR BORDER & SHINE --- */
+
+.payment-option-icon .shine {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Use CSS variables, which we'll set with JS */
+    background: radial-gradient(circle at var(--shine-x) var(--shine-y), rgba(255, 255, 255, 0.2) 0%, transparent 60%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 20px;
+    /* Match parent */
+}
+
+.payment-option-icon .border {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.8);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 4;
+    /* On top of everything */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+}
+
+.payment-option-icon .border-top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+}
+
+.payment-option-icon .border-right {
+    top: 0;
+    right: 0;
+    width: 3px;
+    height: 100%;
+}
+
+.payment-option-icon .border-bottom {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+}
+
+.payment-option-icon .border-left {
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+}
+
+
+/* --- NEW STYLES FOR PAYMENT WINDOW SCREENS (DARK UI) --- */
+.payment-sheet {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* --- COLOR UPDATED --- */
+    background-color: #242424; 
+    border-radius: 20px 20px 0 0;
+    padding: 1vw;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(100%); /* Initially hidden */
+    visibility: hidden;
+}
+
+.payment-sheet-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 0.5vw 1vw 0.5vw;
+}
+
+.sheet-close-btn, .sheet-more-btn {
+    font-size: 1.5vw;
+    /* --- COLOR UPDATED --- */
+    color: #b0b0b0;
+    text-decoration: none;
+}
+
+.payment-sheet-content {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.payment-screen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* --- COLOR UPDATED --- */
+    color: white;
+    padding: 1vw;
+    /* All screens are off-screen by default, except the first */
+    transform: translateX(100%); 
+    opacity: 0;
+    visibility: hidden;
+}
+
+.payment-screen#bankTransferScreen {
+    transform: translateX(0); /* First screen is on-screen */
+    opacity: 1;
+    visibility: visible;
+}
+
+
+.payment-title {
+    font-size: 1.5vw;
+    font-weight: 600;
+    margin-bottom: 0.5vw;
+    /* --- COLOR UPDATED --- */
+    color: white;
+}
+
+.payment-subtitle {
+    font-size: 0.9vw;
+    /* --- COLOR UPDATED --- */
+    color: #b0b0b0;
+    margin-bottom: 1.5vw;
+}
+
+.payment-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2vw;
+}
+
+.payment-input, .payment-btn {
+    width: 100%;
+    padding: 1.2vw;
+    border: none;
+    border-radius: 8px;
+    font-size: 1vw;
+    font-family: "Poppins", sans-serif;
+}
+
+.payment-input {
+    /* --- STYLES UPDATED --- */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    transition: border-color 0.2s ease;
+}
+.payment-input:focus {
+    outline: none;
+    border-color: #1A73E8;
+}
+
+.payment-input::placeholder {
+    /* --- COLOR UPDATED --- */
+    color: #9e9e9e;
+}
+
+.payment-btn {
+    background-color: #1A73E8; /* GPay Blue */
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    margin-top: 1vw;
+}
+
+.payment-btn:hover {
+    background-color: #1565C0; /* Darker Blue */
+}
+
+/* GPay-style Screen */
+#paymentConfirmScreen {
+    justify-content: space-between;
+}
+
+.recipient-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5vw;
+}
+.confirm-title {
+    font-size: 1.1vw;
+    font-weight: 500;
+    /* --- COLOR UPDATED --- */
+    color: #b0b0b0;
+}
+
+.recipient-pfp {
+    height: 5vw;
+    width: 5vw;
+    border-radius: 50%;
+    /* background-color: #4527A0; */
+    background-image: url(assets/people_male_friend.svg);
+    background-size: cover;
+    background-position: center;
+    /* --- BORDER UPDATED --- */
+    /* border: 2px solid rgba(255, 255, 255, 0.1); */
+    background-repeat: no-repeat;
+}
+
+.recipient-name {
+    font-size: 1.2vw;
+    font-weight: 500;
+    /* --- COLOR UPDATED --- */
+    color: white;
+}
+.recipient-detail {
+    font-size: 0.9vw;
+    /* --- COLOR UPDATED --- */
+    color: #b0b0b0;
+}
+
+.amount-input-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1vw 0;
+}
+.amount-input-wrapper span {
+    font-size: 3.5vw;
+    font-weight: 400;
+    /* --- COLOR UPDATED --- */
+    color: white;
+    margin-right: 0.5vw;
+}
+.amount-input {
+    font-size: 4vw;
+    font-weight: 500;
+    /* --- COLOR UPDATED --- */
+    color: white;
+    background: none;
+    border: none;
+    width: 12vw; /* Adjust as needed */
+    text-align: left;
+    padding: 0;
+}
+.amount-input:focus {
+    outline: none;
+    border: none;
+}
+.amount-input::placeholder {
+    /* --- COLOR UPDATED --- */
+    color: #888;
+}
+
+.amount-input-wrapper.small {
+    margin-bottom: 0;
+}
+.amount-input-wrapper.small span {
+    font-size: 2vw;
+    /* --- COLOR UPDATED --- */
+    color: white;
+}
+.amount-input-wrapper.small .amount-input {
+    font-size: 2vw;
+    text-align: left;
+    /* --- STYLES UPDATED --- */
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 1vw;
+    width: 100%;
+}
+.amount-input-wrapper.small .amount-input:focus {
+    border-color: #1A73E8;
+}
+
+
+.note-input {
+    /* --- STYLES UPDATED --- */
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    text-align: center;
+    font-weight: 500;
+    border-radius: 20px !important;
+}
+.note-input::placeholder {
+    /* --- COLOR UPDATED --- */
+    color: #9e9e9e !important;
+}
+
+/* Success Screen */
+#successScreen {
+    justify-content: center;
+}
+.success-icon {
+    width: 8vw;
+    height: 8vw;
+    margin: 2vw 0;
+}
+.checkmark {
+    fill: none;
+    stroke: #34A853; /* GPay Green (looks good on dark) */
+    stroke-width: 3;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 48;
+    stroke-dashoffset: 48;
+    /* GSAP will animate this */
+}
+
+.payment-error {
+    font-size: 0.9vw;
+    color: #C62828; /* Dark Red */
+    text-align: center;
+    margin-top: -0.5vw;
+    margin-bottom: 0.5vw;
+    font-weight: 500;
 }

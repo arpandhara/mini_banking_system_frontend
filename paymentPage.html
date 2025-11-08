@@ -21,36 +21,31 @@
                             </div>
 
                             <div class="userProfilePicandOtherInfo">
-
                                 <div class="profileInfo">
                                     <h1 class="userName">Manju Dhara</h1>
-
                                     <div class="profileDetails">
-
                                         <div class="profileDetailItem">
                                             <i class="ri-user-line"></i>
                                             <p>User ID</p>
-                                            <h3>#1001</h3>
+                                            <h3 class="profile-user-id">#1001</h3>
                                         </div>
                                         <div class="profileDetailItem">
                                             <i class="ri-phone-fill"></i>
                                             <p>Phone Number</p>
-                                            <h3>+91 7679048065</h3>
+                                            <h3 class="profile-phone-number">+91 7679048065</h3>
                                         </div>
                                         <div class="profileDetailItem">
                                             <i class="ri-calendar-line"></i>
                                             <p>Age</p>
-                                            <h3>35</h3>
+                                            <h3 class="profile-age">35</h3>
                                         </div>
                                         <div class="profileDetailItem">
                                             <i class="ri-women-line"></i>
                                             <p>Gender</p>
-                                            <h3>Female</h3>
+                                            <h3 class="profile-gender">Female</h3>
                                         </div>
-
                                     </div>
                                 </div>
-
                                 <div class="profileAvatar">
                                     <div class="profilePic"></div>
                                     <div class="profileActions">
@@ -64,47 +59,125 @@
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="leftDownPaymentOptions">
+                            <!-- --- "Make a saving deposit" BUTTON REMOVED --- -->
                             <div class="payment-options-grid">
-                                <a href="#" class="payment-option-btn">
+                                <a href="#" class="payment-option-btn" id="depositBtn">
                                     <div class="payment-option-icon po-deposit">
+                                        <span class="shine"></span><span class="border border-top"></span><span
+                                            class="border border-right"></span><span
+                                            class="border border-bottom"></span><span class="border border-left"></span>
                                         <i class="ri-arrow-down-circle-line"></i>
                                         <p>Deposit</p>
                                     </div>
                                 </a>
-                                <a href="#" class="payment-option-btn">
+                                <a href="#" class="payment-option-btn" id="withdrawBtn">
                                     <div class="payment-option-icon po-withdraw">
+                                        <span class="shine"></span><span class="border border-top"></span><span
+                                            class="border border-right"></span><span
+                                            class="border border-bottom"></span><span class="border border-left"></span>
                                         <i class="ri-arrow-up-circle-line"></i>
                                         <p>Withdraw</p>
                                     </div>
                                 </a>
-                                <a href="#" class="payment-option-btn">
+                                <a href="#" class="payment-option-btn" id="payFriendBtn">
                                     <div class="payment-option-icon po-pay">
+                                        <span class="shine"></span><span class="border border-top"></span><span
+                                            class="border border-right"></span><span
+                                            class="border border-bottom"></span><span class="border border-left"></span>
                                         <i class="ri-team-fill"></i>
                                         <p>Pay a Friend</p>
                                     </div>
                                 </a>
-                                <a href="#" class="payment-option-btn">
+                                <a href="#" class="payment-option-btn" id="bankTransferBtn">
                                     <div class="payment-option-icon po-info">
-                                        <i class="ri-search-eye-line"></i>
-                                        <p>Check Balance</p>
-                                    </div>
-                                </a>
-                                <a href="#" class="payment-option-btn">
-                                    <div class="payment-option-icon po-saving">
-                                        <i class="ri-add-circle-line"></i>
-                                        <p>Make a saving deposit</p>
+                                        <span class="shine"></span><span class="border border-top"></span><span
+                                            class="border border-right"></span><span
+                                            class="border border-bottom"></span><span class="border border-left"></span>
+                                        <i class="ri-bank-line"></i>
+                                        <p>Bank Transfer</p>
                                     </div>
                                 </a>
                             </div>
                         </div>
                     </div>
+
+                    <!-- ===== PAYMENT WINDOW UI ===== -->
                     <div class="right">
-                        <div class="paymentWindow"></div>
+                        <div class="paymentWindow">
+                            <div class="payment-sheet">
+                                <div class="payment-sheet-header">
+                                    <a href="#" class="sheet-close-btn"><i class="ri-close-line"></i></a>
+                                    <a href="#" class="sheet-more-btn"><i class="ri-more-2-fill"></i></a>
+                                </div>
+                                <div class="payment-sheet-content">
+
+                                    <!-- Screen 1: Bank Transfer (Pay Stranger) -->
+                                    <div class="payment-screen" id="bankTransferScreen">
+                                        <h2 class="payment-title">Pay to Bank Account</h2>
+                                        <div class="payment-form">
+                                            <input type="text" class="payment-input" id="bankAcctNumInput" placeholder="Account Number">
+                                            <input type="text" class="payment-input" id="bankAcctHolderInput" placeholder="Account holder's name">
+                                            <a href="#" class="payment-btn" id="bankTransferProceedBtn">Proceed</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 2: Payment Confirmation (GPay style) -->
+                                    <div class="payment-screen" id="paymentConfirmScreen">
+                                        <div class="recipient-info">
+                                            <p class="confirm-title" id="confirmTitle">Paying Rohit</p>
+                                            <!-- --- ICON ADDED --- -->
+                                            <div class="recipient-pfp" id="confirmPfp">
+                                                <!-- <i class="ri-wallet-3-line"></i> -->
+                                            </div>
+                                            <p class="recipient-name" id="confirmName">Rohit Kumar</p>
+                                            <p class="recipient-detail" id="confirmDetail">rohit@bankaccount.com</p>
+                                        </div>
+                                        <div class="amount-input-wrapper">
+                                            <span>₹</span>
+                                            <input type="text" id="confirmAmount" class="amount-input"
+                                                placeholder="0">
+                                        </div>
+                                        <input type="text" class="payment-input note-input" id="confirmNoteInput"
+                                            placeholder="Add a note... (e.g. Painting ka material)">
+                                        <a href="#" class="payment-btn" id="confirmPayBtn">Pay</a>
+                                    </div>
+
+                                    <!-- Screen 3: Saving Deposit (REMOVED) -->
+
+                                    <!-- Screen 4: Password -->
+                                    <div class="payment-screen" id="passwordScreen">
+                                        <h2 class="payment-title">Enter Password</h2>
+                                        <p class="payment-subtitle">To confirm your payment</p>
+                                        <div class="payment-form">
+                                            <input type="password" class="payment-input" id="passwordInput"
+                                                placeholder="Enter your password">
+                                            <p class="payment-error" id="paymentErrorMsg"></p>
+                                            <a href="#" class="payment-btn" id="confirmPaymentBtn">Confirm
+                                                Payment</a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Screen 5: Success -->
+                                    <div class="payment-screen" id="successScreen">
+                                        <div class="success-icon">
+                                            <svg viewBox="0 0 50 50">
+                                                <path class="checkmark" d="M14 27l7.9 7.9L36 20"></path>
+                                            </svg>
+                                        </div>
+                                        <h2 class="payment-title">Payment Successful!</h2>
+                                        <p class="payment-subtitle" id="successTransactionId">Transaction ID: 1234567890</p>
+                                        <a href="#" class="payment-btn" id="doneBtn">Done</a>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    <!-- ===== END OF UI ===== -->
+
                 </div>
                 <div class="dock">
                     <div class="dockbox">
@@ -118,7 +191,6 @@
             </div>
         </div>
     </main>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="paymentPage.js"></script>

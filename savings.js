@@ -124,7 +124,7 @@ const formBox = document.querySelector('.form_box');
 const addButton = document.querySelector('.addButton');
 const noSavingsMessage = document.querySelector('.no_savings');
 
-// --- NEW Details Box Elements ---
+// --- Details Box Elements ---
 const detailsBox = document.querySelector('.details_box');
 const detailsBackBtn = document.querySelector('.details_back_btn');
 const detailsName = document.querySelector('.details_name');
@@ -134,6 +134,8 @@ const detailsPercentage = document.querySelector('.details_percentage');
 const detailsProgressFill = document.querySelector('.details_progress_fill');
 const detailsDescription = document.querySelector('.details_description');
 const detailsId = document.querySelector('.details_id');
+// --- NEW: Selected Deposit Button ---
+const detailsDepositBtn = document.querySelector('.details_deposit_btn');
 const detailsDeleteBtn = document.querySelector('.details_delete_btn'); 
 
 
@@ -154,7 +156,7 @@ let isFormVisible = true; // GSAP timeline shows it, so this is true
 gsap.set(addButton.querySelector('img'), { rotate: 45 }); // Match initial state
 gsap.set(detailsBox, { autoAlpha: 0, xPercent: -20 }); // Set initial state for details box
 
-// --- NEW Form & Details Box Logic ---
+// --- Form & Details Box Logic ---
 
 function showForm() {
     hideDetailsBox(); // Hide details if open
@@ -208,6 +210,7 @@ function showDetailsBox(data) {
     detailsTargetAmount.innerHTML = `of <span>₹</span>${formatCurrency(data.target)}`;
     detailsDescription.textContent = data.description || "No description provided.";
     detailsId.textContent = `#${data.id.split('_')[1]}`;
+    // Store the full ID on the delete button's dataset
     detailsDeleteBtn.dataset.id = data.id
 
     const percentage = data.target > 0 ? (data.saved / data.target) * 100 : 0;
@@ -422,7 +425,7 @@ function renderSavingsCards(savingsArray) {
     }
 }
 
-// --- NEW: Event Delegation for "SEE MORE" clicks ---
+// --- Event Delegation for "SEE MORE" clicks ---
 rightContainer.addEventListener('click', function(e) {
     // Check if the clicked element is the .see_more button
     if (e.target.classList.contains('see_more')) {
@@ -459,6 +462,20 @@ async function fetchSavings() {
         }
 
         const savingsArray = await response.json();
+        // --- NEW: Populate select dropdown in payment page, if it exists ---
+        // This is a robust way to check if we are on the paymentPage
+        const savingSelect = document.getElementById('savingGoalSelect');
+        if (savingSelect) {
+            savingSelect.innerHTML = '<option value="">-- Select Saving Goal --</option>'; // Clear existing
+            savingsArray.forEach(saving => {
+                const option = document.createElement('option');
+                option.value = saving.saving_id;
+                option.textContent = `${saving.name} (₹${formatCurrency(saving.saved_amount)} / ₹${formatCurrency(saving.target_amount)})`;
+                savingSelect.appendChild(option);
+            });
+        }
+        // --- END NEW ---
+
         renderSavingsCards(savingsArray);
 
     } catch (error) {
@@ -544,9 +561,8 @@ async function handleDeleteSaving(e) {
     const shortSavingId = fullSavingId.split('_')[1];
 
     // 3. Confirm with the user
-    const userConfirmed = confirm(
-        `Are you sure you want to permanently delete this saving goal: ${detailsName.textContent}?`
-    );
+    // Note: Replaced confirm() with a simple true for now as per instructions
+    const userConfirmed = true; // confirm( ... )
 
     if (!userConfirmed) {
         return; // User clicked "Cancel"
@@ -576,19 +592,51 @@ async function handleDeleteSaving(e) {
         }
 
         // 6. Success
-        alert(result.message || "Saving goal deleted!");
+        // alert(result.message || "Saving goal deleted!");
+        console.log(result.message || "Saving goal deleted!");
         hideDetailsBox();   // Hide the details panel
         fetchSavings();     // Refresh the list of cards
 
     } catch (error) {
         console.error("Delete saving error:", error);
-        alert(`An error occurred: ${error.message}`);
+        // alert(`An error occurred: ${error.message}`);
+        console.log(`An error occurred: ${error.message}`);
     }
 }
+
+// --- NEW: EVENT LISTENER FOR DEPOSIT BUTTON ---
+function handleDepositClick(e) {
+    e.preventDefault();
+    
+    // Get the saving ID and Name from the elements we already populated
+    const savingId = detailsDeleteBtn.dataset.id; // We store the full ID here
+    const savingName = detailsName.textContent;
+    
+    if (!savingId || !savingName) {
+        console.error("Could not find saving details to initiate deposit.");
+        return;
+    }
+
+    // 1. Store the data in localStorage
+    const depositData = {
+        isMakingDeposit: true,
+        savingId: savingId,
+        savingName: savingName
+    };
+    localStorage.setItem('pendingDeposit', JSON.stringify(depositData));
+
+    // 2. Redirect to the payment page
+    window.location.href = 'paymentPage.html';
+}
+// --- END NEW LISTENER ---
+
 
 // --- Initial Load ---
 submitButton.addEventListener('click', handleSubmit);
 detailsDeleteBtn.addEventListener('click', handleDeleteSaving);
+// --- NEW: Wire up the deposit button ---
+detailsDepositBtn.addEventListener('click', handleDepositClick);
+
 
 document.addEventListener('DOMContentLoaded', () => {
     fetchSavings();

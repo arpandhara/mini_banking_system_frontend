@@ -573,6 +573,7 @@ main {
 .details_delete_btn:hover {
     transform: scale(1.03);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    filter: brightness(1.2);
 }
 
 .details_id {
