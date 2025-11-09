@@ -326,7 +326,7 @@ main {
     align-items: center;
     /* justify-content: space-around;  REMOVED this */
     gap: 0.8vw; /* Added gap between buttons */
-    padding: 0 0.8vw; /* ADDED horizontal padding here */
+    /* padding: 0 0.8vw; ADDED horizontal padding here */
 }
 
 .payment-option-btn {
@@ -393,22 +393,22 @@ main {
 
 /* --- FUNCTIONAL COLORS --- */
 .payment-option-icon.po-deposit {
-    background-color: #2E7D32;
+    background-color: #0742A0;
     /* Dark Green */
 }
 
 .payment-option-icon.po-withdraw {
-    background-color: #C62828;
+    background-color: #0742A0;
     /* Dark Red */
 }
 
 .payment-option-icon.po-pay {
-    background-color: #1565C0;
+    background-color: #0742A0;
     /* Dark Blue */
 }
 
 .payment-option-icon.po-info {
-    background-color: #4527A0;
+    background-color: #0742A0;
     /* Dark Purple */
 }
 

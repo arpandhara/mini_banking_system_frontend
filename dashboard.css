@@ -38,7 +38,7 @@ main {
         radial-gradient(circle at 20% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
         radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
         radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
-        /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
+    /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
     background-size: 100% 100%;
     background-repeat: no-repeat;
     overflow: hidden;
@@ -164,11 +164,11 @@ main {
     justify-content: space-around;
 }
 
-.dockbox a{
+.dockbox a {
     text-decoration: none;
 }
 
-.dockbox i{
+.dockbox i {
     color: rgb(156, 156, 156);
     font-size: 3vw;
 
@@ -176,7 +176,7 @@ main {
     /* transition: all 0.2s ease-in-out; */
 }
 
-.dashboardLeft{
+.dashboardLeft {
     height: 100%;
     width: 80%;
     /* background-color: black; */
@@ -186,14 +186,14 @@ main {
     gap: .5vw;
 }
 
-.dashboardRight{
+.dashboardRight {
     height: 100%;
     width: 30%;
     /* background-color: red; */
     /* padding: 1vw; */
 }
 
-.dashboardLeftUp{
+.dashboardLeftUp {
     height: 45%;
     width: 100%;
     display: flex;
@@ -201,7 +201,7 @@ main {
     gap: .5vw;
 }
 
-.balanceOfUser{
+.balanceOfUser {
     height: 100%;
     width: 65%;
     background-color: #242424;
@@ -211,34 +211,34 @@ main {
     overflow: hidden;
 }
 
-.balanceDown{
+.balanceDown {
     position: absolute;
     bottom: -50px;
     z-index: 100;
 }
 
-.balanceUp{
+.balanceUp {
     position: absolute;
     top: -50px;
     right: -10px;
     z-index: 100;
 }
 
-.wire{
+.wire {
     position: absolute;
     right: 0;
     top: 50px;
     width: 50vw;
 }
 
-.layerOfBalanceUser{
+.layerOfBalanceUser {
     height: 100%;
     width: 100%;
     /* background-color: black; */
     z-index: 10000;
 }
 
-.textWrapperForBalanceUser{
+.textWrapperForBalanceUser {
     color: white;
     width: 50%;
     /* background-color: rebeccapurple; */
@@ -249,26 +249,26 @@ main {
     /* align-items: center; */
 }
 
-.balance{
+.balance {
     font-size: 5vw;
     font-weight: 600;
     line-height: 1;
     font-family: "Cambay", sans-serif;
 }
 
-.balance span{
+.balance span {
     font-family: "Cambay", sans-serif;
 }
 
-.textWrapperForBalanceUser p{
+.textWrapperForBalanceUser p {
     font-size: .7vw;
     color: rgb(134, 134, 134);
 }
 
-.bankCard{
+.bankCard {
     height: 100%;
     width: 35%;
-    background-color: rgba(240, 248, 255, 0.09);    
+    background-color: rgba(240, 248, 255, 0.09);
     background-image: url(assets/bankCard.svg);
     background-position: center;
     /* background-size: cover; */
@@ -278,7 +278,7 @@ main {
     color: white;
 }
 
-.bankCardContent{
+.bankCardContent {
     width: 100%;
     height: 30%;
     /* background-color: black; */
@@ -289,22 +289,22 @@ main {
     justify-content: center;
 }
 
-.otherDetails{
+.otherDetails {
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.otherDetails p{
+.otherDetails p {
     font-size: .7vw;
     text-transform: uppercase;
 }
 
-.bankNumber h3{
+.bankNumber h3 {
     font-size: 1.3vw;
 }
 
-.dashboardLeftdown{
+.dashboardLeftdown {
     width: 100%;
     height: 55%;
     /* background-color: aliceblue; */
@@ -312,7 +312,7 @@ main {
     gap: .5vw;
 }
 
-.dashboardLeftdownleft{
+.dashboardLeftdownleft {
     height: 100%;
     width: 40%;
     /* background-color: black; */
@@ -321,7 +321,7 @@ main {
     gap: .5vw;
 }
 
-.incomeAndOutGoing{
+.incomeAndOutGoing {
     height: 20%;
     width: 100%;
     /* background-color: aquamarine; */
@@ -330,19 +330,19 @@ main {
     gap: .5vw;
 }
 
-.monthAndDate p{
+.monthAndDate p {
     font-size: .8vw;
     color: rgb(187, 185, 185);
     line-height: .6;
 }
 
-.dashboardLeftdownRight{
+.dashboardLeftdownRight {
     height: 100%;
     width: 60%;
     /* background-color: rebeccapurple; */
 }
 
-.incomeAndOutGoingBox{
+.incomeAndOutGoingBox {
     width: 90%;
     height: 100%;
     background-color: #242424;
@@ -352,7 +352,7 @@ main {
     justify-content: center;
 }
 
-.incomeAndOutGoingBoxleft{
+.incomeAndOutGoingBoxleft {
     height: 100%;
     width: 50%;
     display: flex;
@@ -361,31 +361,33 @@ main {
     gap: 1vw;
 }
 
-.incomeAndOutGoingBoxright{
+.incomeAndOutGoingBoxright {
     border-left: 1px solid white;
     height: 100%;
     width: 50%;
     display: flex;
-    align-items: center ;
+    align-items: center;
     justify-content: center;
     gap: 1vw;
 }
 
-.incomeAndOutGoingBoxleft p , .incomeAndOutGoingBoxright p{
+.incomeAndOutGoingBoxleft p,
+.incomeAndOutGoingBoxright p {
     font-size: .7vw;
     color: rgb(173, 173, 173);
 }
 
-.incomeAndOutGoingBoxleft h3 , .incomeAndOutGoingBoxright h3{
+.incomeAndOutGoingBoxleft h3,
+.incomeAndOutGoingBoxright h3 {
     font-size: 1.3vw;
 }
 
-.incomeAndOutGoingBox span{
+.incomeAndOutGoingBox span {
     font-family: "Cambay", sans-serif;
     font-size: 1.6vw;
 }
 
-.savings{
+.savings {
     height: 80%;
     width: 100%;
     background-color: #242424;
@@ -395,13 +397,13 @@ main {
     gap: .5vw;
 }
 
-.savingsLeft{
+.savingsLeft {
     height: 100%;
     width: 85%;
     /* background-color: rebeccapurple; */
 }
 
-.savingsRight{
+.savingsRight {
     height: 100%;
     width: 15%;
     background-color: #D9D9D9;
@@ -412,7 +414,7 @@ main {
     cursor: pointer;
 }
 
-.savingsLeftUp{
+.savingsLeftUp {
     width: 100%;
     height: 10%;
     /* background-color: red; */
@@ -422,34 +424,38 @@ main {
     padding: .3vw;
 }
 
-.savingsLeftUp h2{
+.savingsLeftUp h2 {
     color: white;
     font-weight: 600;
     font-size: 1.2vw;
 }
 
-.savingsLeftUp p{
+.savingsLeftUp p {
     font-size: .9vw;
     font-weight: 600;
     color: #489FCD;
-    cursor: pointer; /* Added cursor */
+    cursor: pointer;
+    /* Added cursor */
 }
 
 /* --- THIS IS THE CSS FIX ---
   This rule will now create the 2x2 grid.
 */
-.savingsLeftDown{
+.savingsLeftDown {
     height: 90%;
-    width: 100%;    
+    width: 100%;
     padding: .3vw;
     display: grid;
     /* --- These two lines create the 2x2 grid --- */
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
     gap: .5vw;
-    /* align-content: flex-start; */ /* (No longer needed with grid) */
-    /* background-color: rebeccapurple; */ /* (Removed for production) */
+    /* align-content: flex-start; */
+    /* (No longer needed with grid) */
+    /* background-color: rebeccapurple; */
+    /* (Removed for production) */
 }
+
 /* These rules are no longer needed */
 /*
 .savingsLeftDownTop , .savingsLeftDownBottom{
@@ -462,9 +468,11 @@ main {
 */
 
 /* This rule styles the dynamic cards */
-.savingBoxes{
-    /* height: 49%; */  /* <-- REMOVE THIS */
-    /* width: 49%; */   /* <-- REMOVE THIS */
+.savingBoxes {
+    /* height: 49%; */
+    /* <-- REMOVE THIS */
+    /* width: 49%; */
+    /* <-- REMOVE THIS */
     background-color: white;
     border-radius: 13px;
     overflow: hidden;
@@ -473,20 +481,20 @@ main {
     gap: 1vw;
     padding: .5vw;
     cursor: pointer;
-    
+
     /* You can optionally add these to be explicit, but it should work without them */
     width: 100%;
     height: 100%;
 }
 
-.savingBoxesContent{
+.savingBoxesContent {
     /* background-color: black; */
     height: 60%;
     width: 100%;
     /* padding: .5vw; */
 }
 
-.savingsNameAndArrow{
+.savingsNameAndArrow {
     width: 100%;
     display: flex;
     align-items: center;
@@ -494,19 +502,20 @@ main {
     /* padding: .5vw; */
 }
 
-.savingsNameAndArrow p{
+.savingsNameAndArrow p {
     font-size: .7vw;
     font-weight: 600;
     color: rgb(139, 139, 139);
 }
 
-.totalSaved , .totalSaved span{
+.totalSaved,
+.totalSaved span {
     /* font-family: "Cambay", sans-serif; */
     font-weight: 700;
     font-size: 1.3vw;
 }
 
-.savingBoxesProgressBar{
+.savingBoxesProgressBar {
     width: 100%;
     background-color: rgb(172, 170, 170);
     height: 10%;
@@ -514,30 +523,31 @@ main {
     overflow: hidden;
 }
 
-.progress{
+.progress {
     height: 100%;
     /* width is set by inline style */
     /* background-color is set by inline style */
     border-radius: 15px;
 }
 
-.savingsLeftUp , .savingsLeftDown{
+.savingsLeftUp,
+.savingsLeftDown {
     /* display: none; */
 }
 
-.no_savings_text{
+.no_savings_text {
     color: white;
     display: none;
 }
 
-.savingsLeft{
+.savingsLeft {
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
 }
 
-.people{
+.people {
     background-color: #242424;
     width: 100%;
     height: 100%;
@@ -546,7 +556,7 @@ main {
     display: flex;
 }
 
-.peopleLeft{
+.peopleLeft {
     /* background-color: rebeccapurple; */
     height: 100%;
     width: 55%;
@@ -556,7 +566,7 @@ main {
     /* justify-content: center; */
 }
 
-.peopleImageWrapper{
+.peopleImageWrapper {
     width: 100%;
     height: 90%;
     display: flex;
@@ -567,24 +577,24 @@ main {
 }
 
 
-.peopleLeft img{
+.peopleLeft img {
     /* background-color: beige; */
     height: 100%;
     width: 100%;
-    rotate: -10deg  ;
+    rotate: -10deg;
 }
 
-.peopleLeft h3{
+.peopleLeft h3 {
     font-weight: 500;
     color: white;
 }
 
-.peopleLeft p{
+.peopleLeft p {
     font-size: .7vw;
     color: white;
 }
 
-.peopleRight{
+.peopleRight {
     height: 100%;
     width: 45%;
     background-color: rgb(21, 21, 21);
@@ -596,13 +606,13 @@ main {
     flex-direction: column;
 }
 
-.no_people_added{
+.no_people_added {
     font-size: .7vw;
     color: white;
     display: none;
 }
 
-.peopleCards{
+.peopleCards {
     height: 25%;
     width: 100%;
     /* background-color: rebeccapurple; */
@@ -617,7 +627,7 @@ main {
     border-radius: 8px;
 }
 
-.peoplepfp{
+.peoplepfp {
     /* background-color: red; */
     background-image: url(assets/people_male_friend.svg);
     background-repeat: no-repeat;
@@ -628,41 +638,41 @@ main {
     border-radius: 50%;
 }
 
-.peopleOtherDetails{
+.peopleOtherDetails {
     height: 90%;
     width: 75%;
     /* background-color: #377CC8; */
     color: white;
 }
 
-.peopleName{
+.peopleName {
     font-weight: 500;
     font-size: 1.3vw;
 }
 
-.peopleRelation{
+.peopleRelation {
     font-weight: 400;
     font-size: .8vw;
 }
 
-.peopleCards2 .peoplepfp{
+.peopleCards2 .peoplepfp {
     background-image: url(assets/people_female_friend.svg);
 }
 
-.peopleCards3 .peoplepfp{
+.peopleCards3 .peoplepfp {
     background-image: url(assets/people_female_friend_2.svg);
 }
 
-.peopleCards4 .peoplepfp{
+.peopleCards4 .peoplepfp {
     background-image: url(assets/people_lady.svg);
 }
 
-.dashboardRight{
+.dashboardRight {
     padding: 1vw 0vw 0vw 0vw;
     /* background-color: rebeccapurple; */
 }
 
-.transactions{
+.transactions {
     height: 100%;
     width: 100%;
     background-color: #242424;
@@ -670,12 +680,12 @@ main {
     padding: .5vw;
 }
 
-.transactions h3{
+.transactions h3 {
     color: #F46D6D;
     font-size: 1.5vw;
 }
 
-.transaction_slides{
+.transaction_slides {
     /* background-color: rebeccapurple; */
     width: 100%;
     height: 90%;
@@ -688,11 +698,11 @@ main {
     gap: .7vw;
 }
 
-.transaction_slides::-webkit-scrollbar{
+.transaction_slides::-webkit-scrollbar {
     display: none;
 }
 
-.transaction_slides .slides{
+.transaction_slides .slides {
     height: 15%;
     width: 100%;
     /* border: 1px solid red; */
@@ -700,7 +710,7 @@ main {
     gap: .5vw;
 }
 
-.slidesLeft{
+.slidesLeft {
     height: 100%;
     width: 65%;
     background-color: white;
@@ -709,24 +719,24 @@ main {
     display: flex;
 }
 
-.slidesRight p{
+.slidesRight p {
     font-size: .9vw;
     color: white;
 }
 
-.slidesRight .transactions_description{
+.slidesRight .transactions_description {
     font-size: .7vw;
 }
 
-.no_transaction{
+.no_transaction {
     color: white;
 }
 
-.no_transaction{
+.no_transaction {
     /* display: none; */
 }
 
-.slidesLeftName{
+.slidesLeftName {
     height: 100%;
     width: 70%;
     /* background-color: rebeccapurple; */
@@ -736,16 +746,22 @@ main {
     /* align-items: center; */
 }
 
-.transaction_name{
+.transaction_name {
     font-size: 1.2vw;
     font-weight: 600;
+
+    /* --- MODIFIED: Added rules for ellipsis --- */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 100%;
 }
 
-.transaction_type{
+.transaction_type {
     font-size: .7vw;
 }
 
-.transactionAmount{
+.transactionAmount {
     height: 100%;
     width: 30%;
     /* background-color: rebeccapurple; */
@@ -754,13 +770,22 @@ main {
     justify-content: center;
 }
 
-.transactionAmount h2{
+.transactionAmount h2 {
     font-size: 1.2vw;
     font-weight: 600;
     color: #E25C5C;
+    /* This is the default (outcome) color */
 }
 
-.amount{
+.amount {
     font-weight: 600;
     color: #E25C5C;
+    /* This is the default (outcome) color */
+}
+
+/* --- NEW: Rule for green income --- */
+.transactionAmount h2.income,
+.transactionAmount h2.income .amount {
+    color: #2ECC71;
+    /* This is the new green color for income */
 }

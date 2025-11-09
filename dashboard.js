@@ -233,7 +233,9 @@ function renderTransactions(transactions = []) {
         const isIncome = tx.amount > 0;
         const amountClass = isIncome ? 'income' : 'outcome'; 
         const sign = isIncome ? '+' : '-';
-        const formattedAmount = Math.abs(tx.amount).toLocaleString('en-IN');
+        
+        // --- MODIFIED: Use formatToIndianCurrency ---
+        const formattedAmount = formatToIndianCurrency(tx.amount);
 
         const slideHtml = `
             <div class="slides">
