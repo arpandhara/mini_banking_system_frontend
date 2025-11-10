@@ -121,8 +121,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const confirmDetail = document.getElementById('confirmDetail');
     
     // Get user's info from the profile section
-    const userName = document.querySelector('.profileInfo .userName').textContent;
-    const userPfp = document.querySelector('.profilePic').style.backgroundImage;
+    let userName = document.querySelector('.profileInfo .userName').textContent;
+    let userPfp = document.querySelector('.profilePic').style.backgroundImage;
 
     // Get all input fields
     const bankAcctNumInput = document.getElementById('bankAcctNumInput');
@@ -138,6 +138,54 @@ document.addEventListener("DOMContentLoaded", () => {
     // This object will hold all data for the API call
     let paymentPayload = {};
     let currentScreen = firstScreen; // Keep track of the active screen
+
+    async function fetchAndPopulateProfileData() {
+        try {
+            const response = await fetch("http://127.0.0.1:5000/api/profile-data", {
+                method: "GET",
+                credentials: "include"
+            });
+
+            if (!response.ok) {
+                if (response.status === 401) {
+                    // Not logged in, redirect to login
+                    window.location.href = "login.html";
+                }
+                throw new Error("Could not fetch profile data.");
+            }
+
+            const data = await response.json();
+
+            // Select all the elements to update
+            document.querySelector('.profileInfo .userName').textContent = data.username;
+            document.querySelector('.profile-user-id').textContent = `#${data.user_id}`;
+            document.querySelector('.profile-phone-number').textContent = `+91 ${data.phoneNumber}`;
+            document.querySelector('.profile-age').textContent = data.age;
+            
+            // Capitalize the first letter of gender
+            const gender = data.gender.charAt(0).toUpperCase() + data.gender.slice(1);
+            document.querySelector('.profile-gender').textContent = gender;
+
+            // Update profile picture based on gender
+            const profilePic = document.querySelector('.profilePic');
+            if (data.gender.toLowerCase() === 'female') {
+                profilePic.style.backgroundImage = 'url(assets/people_female_friend.svg)';
+            } else if (data.gender.toLowerCase() === 'male') {
+                profilePic.style.backgroundImage = 'url(assets/people_male_friend.svg)';
+            } else {
+                // A default/other icon
+                profilePic.style.backgroundImage = 'url(assets/userFace.svg)';
+            }
+            
+            // --- This is crucial: Update the JS variables for the payment sheet ---
+            userName = data.username;
+            userPfp = profilePic.style.backgroundImage;
+
+        } catch (error) {
+            console.error("Failed to load profile data:", error);
+            // If it fails, the static data will just remain.
+        }
+    }
 
     // --- Animation Functions ---
 
@@ -416,5 +464,5 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // --- NEW: Run the check after initialization ---
     checkForPendingDeposit();
-    
+    fetchAndPopulateProfileData();
 });

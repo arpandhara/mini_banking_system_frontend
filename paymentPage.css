@@ -225,7 +225,7 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
-    border: 3px solid rgba(255, 255, 255, 0.3);
+    /* border: 3px solid rgba(255, 255, 255, 0.3); */
     /* Added a subtle border */
 }
 
