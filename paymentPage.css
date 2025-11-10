@@ -47,6 +47,8 @@ main {
     width: 100%;
     /* background-color: rebeccapurple; */
     padding: .6vw;
+    /* --- NEW: Added position relative --- */
+    position: relative;
 }
 
 .dock {
@@ -740,4 +742,63 @@ main {
     margin-top: -0.5vw;
     margin-bottom: 0.5vw;
     font-weight: 500;
+}
+
+/* ===== NEW: STYLES FOR PASSWORD MODAL ===== */
+#changePasswordModal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000; /* Make sure it's on top */
+
+    /* --- Initially hidden --- */
+    visibility: hidden;
+    opacity: 0;
+}
+
+#changePasswordModal .modal-content {
+    position: relative;
+    width: 30%; /* Adjust width as needed */
+    background-color: #242424; /* Match payment sheet */
+    border-radius: 15px;
+    padding: 2vw;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    
+    /* --- For GSAP animation --- */
+    transform: scale(0.9);
+}
+
+#changePasswordModal .modal-close-btn {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    font-size: 1.5vw;
+    color: #b0b0b0;
+    text-decoration: none;
+}
+
+/* Reuse existing payment form styles */
+#changePasswordModal .payment-title {
+    text-align: center;
+    margin-top: 1vw; /* Space for close button */
+}
+
+#changePasswordModal .payment-form {
+    gap: 1vw; /* Tighter gap for modal */
+}
+
+#changePasswordModal .payment-btn {
+    margin-top: 0.5vw;
+}
+
+#changePasswordModal .payment-error {
+    margin-top: 0;
 }

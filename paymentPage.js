@@ -53,6 +53,13 @@ document.addEventListener("DOMContentLoaded", () => {
     paymentButtons.forEach(button => {
         const iconBox = button.querySelector(".payment-option-icon");
         const shine = button.querySelector(".shine");
+        
+        // --- Select borders for this button ---
+        // const borderTop = iconBox.querySelector(".border-top");
+        // const borderRight = iconBox.querySelector(".border-right");
+        // const borderBottom = iconBox.querySelector(".border-bottom");
+        // const borderLeft = iconBox.querySelector(".border-left");
+
 
         button.addEventListener("mouseenter", () => {
             gsap.to(shine, { opacity: 1, duration: 0.3, ease: "power2.out" });
@@ -465,4 +472,141 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- NEW: Run the check after initialization ---
     checkForPendingDeposit();
     fetchAndPopulateProfileData();
+
+
+    // ===================================================================
+    // --- 3. NEW: CHANGE PASSWORD MODAL LOGIC ---
+    // ===================================================================
+
+    const modal = document.getElementById('changePasswordModal');
+    const modalContent = modal.querySelector('.modal-content');
+    const showModalBtn = document.getElementById('showChangePassModalBtn');
+    const closeModalBtn = document.getElementById('modalCloseBtn');
+    const changePassError = document.getElementById('changePassErrorMsg');
+    
+    // --- Inputs ---
+    const oldPassInput = document.getElementById('oldPasswordInput');
+    const newPassInput = document.getElementById('newPasswordInput');
+    const confirmNewPassInput = document.getElementById('confirmNewPasswordInput');
+
+
+    function showPasswordModal() {
+        gsap.to(modal, {
+            autoAlpha: 1, // Fades in backdrop and modal
+            duration: 0.3,
+            ease: "power2.out"
+        });
+        gsap.fromTo(modalContent, {
+            scale: 0.9,
+            autoAlpha: 0
+        }, {
+            scale: 1,
+            autoAlpha: 1,
+            duration: 0.3,
+            ease: "back.out(1.7)"
+        });
+    }
+
+    function hidePasswordModal() {
+        gsap.to(modal, {
+            autoAlpha: 0, // Fades out backdrop
+            duration: 0.3,
+            ease: "power2.in"
+        });
+        gsap.to(modalContent, {
+            scale: 0.9,
+            autoAlpha: 0,
+            duration: 0.2,
+            ease: "power2.in"
+        });
+
+        // Clear inputs and errors on hide
+        setTimeout(() => {
+            oldPassInput.value = '';
+            newPassInput.value = '';
+            confirmNewPassInput.value = '';
+            changePassError.textContent = '';
+            changePassError.style.color = '#C62828'; // Reset to error color
+        }, 300);
+    }
+
+    // --- Wire up buttons ---
+    showModalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        showPasswordModal();
+    });
+
+    closeModalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        hidePasswordModal();
+    });
+    
+    // Optional: Also close if clicking the backdrop
+    modal.addEventListener('click', (e) => {
+        if (e.target === modal) { // Check if the click is on the backdrop itself
+            hidePasswordModal();
+        }
+    });
+
+    // --- MODIFIED: Add logic for "Update Password" button ---
+    document.getElementById('confirmChangePassBtn').addEventListener('click', async (e) => {
+        e.preventDefault();
+        changePassError.textContent = ''; // Clear error
+        changePassError.style.color = '#C62828'; // Default to error color
+
+        const oldPass = oldPassInput.value;
+        const newPass = newPasswordInput.value;
+        const confirmNewPass = confirmNewPasswordInput.value;
+
+        // --- Simple Validation ---
+        if (!oldPass || !newPass || !confirmNewPass) {
+            changePassError.textContent = "All fields are required.";
+            return;
+        }
+
+        if (newPass !== confirmNewPass) {
+            changePassError.textContent = "New passwords do not match.";
+            return;
+        }
+
+        // --- Create payload for backend ---
+        const payload = {
+            oldPassword: oldPass,
+            newPassword: newPass,
+            confirmNewPassword: confirmNewPass
+        };
+
+        try {
+            // --- Send to backend API ---
+            const response = await fetch('http://127.0.0.1:5000/api/change-password', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include',
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                // Throw the error message from the backend (e.g., "Incorrect old password")
+                throw new Error(result.error || 'An unknown error occurred.');
+            }
+
+            // --- Handle Success ---
+            changePassError.textContent = result.message || "Password updated successfully!";
+            changePassError.style.color = '#34A853'; // Success green
+
+            // Hide modal after 1.5 seconds
+            setTimeout(() => {
+                hidePasswordModal();
+            }, 1500);
+
+        } catch (error) {
+            // --- Handle Failure ---
+            console.error("Password Change Error:", error);
+            changePassError.textContent = error.message; // Show error from backend
+        }
+    });
 });

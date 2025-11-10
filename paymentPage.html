@@ -53,7 +53,7 @@
                                             <i class="ri-logout-circle-line"></i>
                                             <span>Log Out</span>
                                         </a>
-                                        <a href="#" class="profile-btn password-btn">
+                                        <a href="#" class="profile-btn password-btn" id="showChangePassModalBtn">
                                             <i class="ri-lock-password-fill"></i>
                                             <span>Change Password</span>
                                         </a>
@@ -62,7 +62,6 @@
                             </div>
                         </div>
                         <div class="leftDownPaymentOptions">
-                            <!-- --- "Make a saving deposit" BUTTON REMOVED --- -->
                             <div class="payment-options-grid">
                                 <a href="#" class="payment-option-btn" id="depositBtn">
                                     <div class="payment-option-icon po-deposit">
@@ -113,7 +112,6 @@
                         </div>
                     </div>
 
-                    <!-- ===== PAYMENT WINDOW UI ===== -->
                     <div class="right">
                         <div class="paymentWindow">
                             <div class="payment-sheet">
@@ -123,7 +121,6 @@
                                 </div>
                                 <div class="payment-sheet-content">
 
-                                    <!-- Screen 1: Bank Transfer (Pay Stranger) -->
                                     <div class="payment-screen" id="bankTransferScreen">
                                         <h2 class="payment-title">Pay to Bank Account</h2>
                                         <div class="payment-form">
@@ -133,14 +130,11 @@
                                         </div>
                                     </div>
 
-                                    <!-- Screen 2: Payment Confirmation (GPay style) -->
                                     <div class="payment-screen" id="paymentConfirmScreen">
                                         <div class="recipient-info">
                                             <p class="confirm-title" id="confirmTitle">Paying Rohit</p>
-                                            <!-- --- ICON ADDED --- -->
                                             <div class="recipient-pfp" id="confirmPfp">
-                                                <!-- <i class="ri-wallet-3-line"></i> -->
-                                            </div>
+                                                </div>
                                             <p class="recipient-name" id="confirmName">Rohit Kumar</p>
                                             <p class="recipient-detail" id="confirmDetail">rohit@bankaccount.com</p>
                                         </div>
@@ -154,9 +148,6 @@
                                         <a href="#" class="payment-btn" id="confirmPayBtn">Pay</a>
                                     </div>
 
-                                    <!-- Screen 3: Saving Deposit (REMOVED) -->
-
-                                    <!-- Screen 4: Password -->
                                     <div class="payment-screen" id="passwordScreen">
                                         <h2 class="payment-title">Enter Password</h2>
                                         <p class="payment-subtitle">To confirm your payment</p>
@@ -169,7 +160,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- Screen 5: Success -->
                                     <div class="payment-screen" id="successScreen">
                                         <div class="success-icon">
                                             <svg viewBox="0 0 50 50">
@@ -185,8 +175,23 @@
                             </div>
                         </div>
                     </div>
-                    <!-- ===== END OF UI ===== -->
+                    </div>
 
+                <div id="changePasswordModal">
+                    <div class="modal-content">
+                        <a href="#" class="modal-close-btn" id="modalCloseBtn"><i class="ri-close-line"></i></a>
+                        <h2 class="payment-title">Change Password</h2>
+                        <div class="payment-form">
+                            <input type="password" class="payment-input" id="oldPasswordInput"
+                                placeholder="Old Password">
+                            <input type="password" class="payment-input" id="newPasswordInput"
+                                placeholder="New Password">
+                            <input type="password" class="payment-input" id="confirmNewPasswordInput"
+                                placeholder="Confirm New Password">
+                            <p class="payment-error" id="changePassErrorMsg"></p>
+                            <a href="#" class="payment-btn" id="confirmChangePassBtn">Update Password</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="dock">
                     <div class="dockbox">
