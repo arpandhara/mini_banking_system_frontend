@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="transactions.css">
+</head>
+
+<body>
+    <main>
+        <div class="innerBox">
+            <div class="layer">
+                <div class="top">
+                    <div class="dateAndUserName">
+                        <div class="todaysDate">
+                            <p>11-11-2025</p>
+                            <i class="ri-calendar-line"></i>
+                        </div>
+                        <h2>Transactions</h2>
+                        <div class="username">
+                            <p class="user_name">Arpan Dhara</p>
+                        </div>
+                    </div>
+                    <div class="statsOfTransactions">
+                        <div class="balance statBoxes">
+                            <div class="statBoxesIcon">
+                                <i class="ri-money-rupee-circle-line"></i>
+                            </div>
+                            <div class="statBoxesStats">
+                                <p>Balance</p>
+                                <h1>300000</h1>
+                            </div>
+                        </div>
+                        <div class="expense statBoxes">
+                            <div class="statBoxesIcon">
+                                <i class="ri-wallet-fill"></i>
+                            </div>
+                            <div class="statBoxesStats">
+                                <p>Savings</p>
+                                <h1>300000</h1>
+                            </div>
+                        </div>
+                        <div class="income statBoxes">
+                            <div class="statBoxesIcon">
+                                <i class="ri-arrow-down-line"></i>
+                            </div>
+                            <div class="statBoxesStats">
+                                <p>Income</p>
+                                <h1>300000</h1>
+                            </div>
+                        </div>
+                        <div class="expense statBoxes">
+                            <div class="statBoxesIcon">
+                                <i class="ri-arrow-up-line"></i>
+                            </div>
+                            <div class="statBoxesStats">
+                                <p>Outcome</p>
+                                <h1>300000</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="transactionContainer">
+                        <div class="transactionContainerTop">
+                            <div class="transactionTypes">
+                                <p>All</p>
+                                <p>Savings</p>
+                                <p>Income</p>
+                                <p>Expenses</p>
+                            </div>
+                            <div class="transactionStatusOption">
+                                <p>Status:</p>
+                                <select name="status" id="transactionStatus">
+                                    <option value="all">All</option>
+                                    <option value="pending">Pending</option>
+                                    <option value="completed">Completed</option>
+                                    <option value="failed">Failed</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="transactionContainerBottom">
+                            <div class="heading">
+                                <p>Ref Id</p>
+                                <p>Transaction Date</p>
+                                <p>From</p>
+                                <p>Type</p>
+                                <p>Amount</p>
+                                <p class="removeBorder">Status</p>
+                            </div>
+                            <div class="transactionData"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="dock">
+                    <div class="dockbox">
+                        <a href="dashboard.html"><i class="ri-home-fill"></i></a>
+                        <a href="savings.html"><i class="ri-wallet-fill"></i></a>
+                        <a href="paymentPage.html"><i class="ri-hand-coin-fill"></i></a>
+                        <a href="#"><i class="ri-team-fill"></i></a>
+                        <a href="#"><i class="ri-history-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="transactions.js"></script>
+</body>
+
+</html>
