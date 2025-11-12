@@ -143,7 +143,6 @@ body::-webkit-scrollbar{
     gap: 0.3vw;
 }
 
-/* --- NEW: Filter Menu Style --- */
 .filter-menu {
     display: none;
     position: absolute;
@@ -231,37 +230,59 @@ body::-webkit-scrollbar{
     flex-direction: column;
 }
 
-.people-list-header,
+.people-list-header {
+    display: grid;
+    grid-template-columns: 2.5fr 1.5fr 2fr 1fr 1.5fr; 
+    align-items: center;
+    padding: 0 1.5vw;
+    color: #aaa;
+    background-color: #1a1a1a;
+    border-bottom: 1px solid #333;
+}
+
+.people-list-header p {
+    padding: 1.2vw 0.5vw;
+    font-size: 0.9vw;
+    font-weight: 500;
+}
+
 .people-list-row {
     display: grid;
     grid-template-columns: 2.5fr 1.5fr 2fr 1fr 1.5fr;
     align-items: center;
     padding: 0 1.5vw;
     color: white;
+    border-bottom: 1px solid #333;
+    font-size: 1vw;
+    transition: background-color 0.2s ease;
 }
 
-.people-list-header {
-    background-color: #1a1a1a;
-    padding-top: 1.2vw;
-    padding-bottom: 1.2vw;
-    font-size: 0.9vw;
-    font-weight: 500;
-    color: #aaa;
-    border-bottom: 1px solid #333;
+.people-list-row:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.people-list-row:last-child {
+    border-bottom: none;
+}
+
+.people-list-row > div {
+    padding: 1vw 0.5vw;
+    display: flex;
+    align-items: center;
+    overflow: hidden; 
+    min-width: 0;
+}
+
+.people-list-row p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .people-list-body {
     overflow-y: auto;
     height: 100%;
     position: relative;
-}
-
-.people-list-row[data-id] { 
-    border-bottom: 1px solid #333;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    font-size: 1vw;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
 }
 
 .people-list-body::-webkit-scrollbar {
@@ -277,19 +298,6 @@ body::-webkit-scrollbar{
     background: #242424;
 }
 
-.people-list-row {
-    border-bottom: 1px solid #333;
-    padding-top: 1vw;
-    padding-bottom: 1vw;
-    font-size: 1vw;
-    /* Added transition for filtering */
-    transition: opacity 0.3s ease, max-height 0.3s ease;
-}
-
-.people-list-row:last-child {
-    border-bottom: none;
-}
-
 .people-name {
     display: flex;
     align-items: center;
@@ -301,6 +309,7 @@ body::-webkit-scrollbar{
     width: 2.5vw;
     border-radius: 50%;
     background-color: #555;
+    flex-shrink: 0;
 }
 
 .people-phone p,
@@ -356,6 +365,23 @@ body::-webkit-scrollbar{
     position: relative;
 }
 
+/* === MODIFIED: Pay Button Default State (Hidden) === */
+.pay-btn {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+/* ================================================== */
+
+
+/* === MODIFIED: Pay Button Hover State (Visible) === */
+.people-list-row:hover .pay-btn {
+    opacity: 1;
+    visibility: visible;
+}
+/* ================================================== */
+
+
 .pay-btn {
     background-color: #5590D3;
     color: white;
@@ -368,13 +394,13 @@ body::-webkit-scrollbar{
     display: flex;
     align-items: center;
     gap: 0.3vw;
-    transition: background-color 0.2s ease;
 }
 
 .pay-btn:hover {
     background-color: #4a7fc1;
 }
 
+/* === MODIFIED: Action button is now visible by default === */
 .action-menu-btn {
     background-color: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -383,8 +409,10 @@ body::-webkit-scrollbar{
     padding: 0.4vw;
     font-size: 1.1vw;
     cursor: pointer;
+    /* Added transition for its own hover effect */
     transition: background-color 0.2s ease;
 }
+/* ======================================================= */
 
 .action-menu-btn:hover {
     background-color: rgba(255, 255, 255, 0.2);
@@ -465,7 +493,6 @@ body::-webkit-scrollbar{
     color: white;
     border: 1px solid rgba(255, 255, 255, 0.1);
     position: relative;
-    /* For GSAP transform */
     transform: scale(0.9);
 }
 
@@ -542,7 +569,6 @@ body::-webkit-scrollbar{
     appearance: none;
 }
 
-/* --- NEW: Relation Tablet Styles --- */
 .relation-tablets {
     display: flex;
     flex-wrap: wrap;
@@ -590,12 +616,11 @@ body::-webkit-scrollbar{
     background-color: #4a7fc1;
 }
 
-/* --- NEW: Form Error Message --- */
 .form-error-message {
     color: #e74c3c;
     font-size: 0.8vw;
     padding-top: 4px;
-    display: none; /* Hidden by default */
+    display: none;
 }
 
 .form-group input.error,

@@ -312,25 +312,6 @@ document.addEventListener("DOMContentLoaded", () => {
         showSheet();
     });
 
-    document.getElementById('payFriendBtn').addEventListener('click', (e) => {
-        e.preventDefault();
-        // Set type and hardcoded recipient for "Pay Friend"
-        paymentPayload = { 
-            transaction_type: 'bank_transfer',
-            recipient_account: '1000' // Assuming "Arpan Dhara" (user 1000) is the friend
-        };
-        
-        // Configure for PAY A FRIEND (dummy data)
-        confirmTitle.textContent = 'Paying Arpan Dhara'; // Hardcoded friend name
-        confirmName.textContent = 'Arpan Dhara';
-        confirmDetail.textContent = 'Account: #1000';
-        confirmPfp.style.backgroundImage = 'url(assets/people_male_friend.svg)'; // Dummy pfp
-        confirmPfp.classList.remove('is-saving');
-
-        goToScreen('paymentConfirmScreen');
-        showSheet();
-    });
-
     document.getElementById('bankTransferBtn').addEventListener('click', (e) => {
         e.preventDefault();
         paymentPayload = { transaction_type: 'bank_transfer' }; // Set type
