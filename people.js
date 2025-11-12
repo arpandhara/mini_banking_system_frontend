@@ -334,6 +334,7 @@ document.addEventListener("DOMContentLoaded", () => {
             currentlyOpenMenu = isVisible ? null : menu;
         } 
         // --- *** NEW: Handle Pay Button Click *** ---
+        // --- *** NEW: Handle Pay Button Click *** ---
         else if (payBtn) {
             e.preventDefault();
             const row = e.target.closest('.people-list-row');

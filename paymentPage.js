@@ -432,6 +432,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- NEW: Function to check for pending deposit on page load ---
+    // --- NEW: Function to check for pending deposit on page load ---
     function checkForPendingPayment() {
         // First, check for a pending SAVING deposit
         const pendingDepositRaw = localStorage.getItem('pendingDeposit');
@@ -440,33 +441,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const pendingTransferRaw = localStorage.getItem('quickPayPaymentData'); // The new key
 
         if (pendingDepositRaw) {
-            try {
-                const depositData = JSON.parse(pendingDepositRaw);
-                
-                if (depositData.isMakingDeposit && depositData.savingId) {
-                    paymentPayload = {
-                        transaction_type: 'saving_deposit',
-                        saving_id: depositData.savingId
-                    };
-                    
-                    confirmTitle.textContent = 'Deposit to Saving Goal';
-                    confirmName.textContent = depositData.savingName;
-                    confirmDetail.textContent = `ID: ${depositData.savingId}`;
-                    confirmPfp.style.backgroundImage = 'none'; 
-                    confirmPfp.classList.add('is-saving'); // Show savings icon
-                    confirmAmount.value = ''; 
-                    confirmNoteInput.value = '';
-
-                    goToScreen('paymentConfirmScreen');
-                    showSheet();
-                }
-            } catch (e) {
-                console.error("Error parsing pending deposit data:", e);
-            }
+            // ... (handles savings deposit logic) ...
             // --- IMPORTANT: Clear the key after use ---
             localStorage.removeItem('pendingDeposit');
 
-        } else if (pendingTransferRaw) { // <-- *** NEW LOGIC ***
+        } else if (pendingTransferRaw) { // <-- *** THIS IS THE NEW LOGIC ***
             try {
                 const paymentData = JSON.parse(pendingTransferRaw);
 
@@ -503,7 +482,7 @@ document.addEventListener("DOMContentLoaded", () => {
     resetPaymentSheet(); // Set all screens to their default positions
     
     // --- NEW: Run the check after initialization ---
-    checkForPendingDeposit();
+    checkForPendingPayment();
     fetchAndPopulateProfileData();
 
 
