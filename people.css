@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cambay:ital,wght@0,400;0,700;1,400;1,700&family=Doto:wght@100..900&family=Italiana&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway+Dots&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik+Mono+One&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
 html,
@@ -25,42 +28,39 @@ main {
     width: 99%;
     border-radius: 30px;
     background-color: black;
-    background-color: black;
     background-image:
         radial-gradient(circle at 20% 30%, rgba(224, 29, 127, 0.5), transparent 30%),
         radial-gradient(circle at 80% 90%, rgba(224, 29, 127, 0.5), transparent 30%),
         radial-gradient(circle at 30% 0%, rgba(0, 119, 255, 0.4), transparent 30%),
         radial-gradient(circle at 100% 80%, rgba(0, 119, 255, 0.4), transparent 30%),
         radial-gradient(circle at 0% 0%, rgba(212, 188, 69, 0.3), transparent 30%);
-        /* radial-gradient(circle at 0% 0%, rgba(212, 117, 69, 0.3), transparent 40%); */
     background-size: 100% 100%;
     background-repeat: no-repeat;
 }
 
-.layer{
+.layer {
     height: 100%;
     width: 100%;
-    /* background-color: rebeccapurple; */
-    /* padding: 1vw; */
+    position: relative;
 }
 
 .dock {
     height: 12%;
     width: 100%;
-    /* background-color: aqua; */
     padding: .5vw;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    margin-bottom: .5vw;
 }
 
 .dockbox {
     background-color: rgba(255, 255, 255, 0.15);
-
-    /* This is the magic property for the glass effect! ✨ */
     backdrop-filter: blur(15px);
     -webkit-backdrop-filter: blur(10px);
-    /* For Safari support */
     border: 1px solid rgba(255, 255, 255, 0.107);
     height: 100%;
     width: 45%;
@@ -77,13 +77,527 @@ main {
 .dockbox i {
     color: rgb(156, 156, 156);
     font-size: 3vw;
-
     transform: scale(1) translateY(0);
-    /* transition: all 0.2s ease-in-out; */
+}
+
+.upperPart {
+    height: 87%;
+    width: 100%;
+    padding: 1vw 1.5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 1vw;
+}
+
+/* --- Header Styles --- */
+.people-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.people-header h1 {
+    font-weight: 600;
+    font-size: 1.8vw;
+}
+
+.header-left,
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+}
+
+.filter-wrapper {
+    position: relative;
+}
+
+.filter-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #eee;
+    padding: 0.6vw 1vw;
+    border-radius: 8px;
+    font-size: 0.9vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3vw;
+    transition: background-color 0.2s ease;
+}
+
+.filter-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-btn span {
+    display: flex;
+    align-items: center;
+    gap: 0.3vw;
+}
+
+/* --- NEW: Filter Menu Style --- */
+.filter-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 0;
+    background-color: rgba(40, 40, 40, 0.8);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    padding: 0.5vw;
+    z-index: 100;
+    width: 12vw;
+    overflow: hidden;
+}
+
+.filter-menu-item {
+    display: block;
+    text-decoration: none;
+    color: #eee;
+    font-size: 0.9vw;
+    padding: 0.6vw 0.8vw;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.filter-menu-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search-bar {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0.6vw 0.8vw;
+}
+
+.search-bar i {
+    color: #ccc;
+    font-size: 1.1vw;
+    margin-right: 0.5vw;
+}
+
+.search-bar input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: white;
+    font-size: 0.9vw;
+    width: 18vw;
+}
+
+.search-bar input::placeholder {
+    color: #ccc;
+}
+
+.add-contact-btn {
+    background-color: #5590D3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.7vw 1.2vw;
+    font-size: 0.9vw;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3vw;
+    transition: background-color 0.2s ease;
+}
+
+.add-contact-btn:hover {
+    background-color: #4a7fc1;
+}
+
+/* --- List/Table Styles --- */
+.people-list-container {
+    flex-grow: 1;
+    background-color: #242424;
+    border-radius: 15px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.people-list-header,
+.people-list-row {
+    display: grid;
+    grid-template-columns: 2.5fr 1.5fr 2fr 1fr 1.5fr;
+    align-items: center;
+    padding: 0 1.5vw;
+    color: white;
+}
+
+.people-list-header {
+    background-color: #1a1a1a;
+    padding-top: 1.2vw;
+    padding-bottom: 1.2vw;
+    font-size: 0.9vw;
+    font-weight: 500;
+    color: #aaa;
+    border-bottom: 1px solid #333;
+}
+
+.people-list-body {
+    overflow-y: auto;
+    height: 100%;
+    position: relative;
+}
+
+.people-list-row[data-id] { 
+    border-bottom: 1px solid #333;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    font-size: 1vw;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.people-list-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.people-list-body::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+}
+
+.people-list-body::-webkit-scrollbar-track {
+    background: #242424;
+}
+
+.people-list-row {
+    border-bottom: 1px solid #333;
+    padding-top: 1vw;
+    padding-bottom: 1vw;
+    font-size: 1vw;
+    /* Added transition for filtering */
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.people-list-row:last-child {
+    border-bottom: none;
+}
+
+.people-name {
+    display: flex;
+    align-items: center;
+    gap: 0.8vw;
+}
+
+.people-name img {
+    height: 2.5vw;
+    width: 2.5vw;
+    border-radius: 50%;
+    background-color: #555;
+}
+
+.people-phone p,
+.people-account p {
+    color: #ddd;
+}
+
+.relation-tag {
+    font-size: 0.8vw;
+    font-weight: 500;
+    padding: 0.3vw 0.8vw;
+    border-radius: 20px;
+    display: inline-block;
+    text-transform: capitalize;
+}
+
+.relation-tag.relation-friend {
+    background-color: rgba(52, 152, 219, 0.2);
+    color: #3498db;
+}
+
+.relation-tag.relation-mom {
+    background-color: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.relation-tag.relation-dad {
+    background-color: rgba(46, 204, 113, 0.2);
+    color: #2ecc71;
+}
+.relation-tag.relation-relative {
+    background-color: rgba(155, 89, 182, 0.2);
+    color: #9b59b6;
+}
+.relation-tag.relation-bf {
+    background-color: rgba(230, 126, 34, 0.2);
+    color: #e67e22;
+}
+.relation-tag.relation-fiance {
+    background-color: rgba(241, 196, 15, 0.2);
+    color: #f1c40f;
+}
+.relation-tag.relation-other {
+    background-color: rgba(149, 165, 166, 0.2);
+    color: #95a5a6;
 }
 
 
-.upperPart{
-    height: 87%;
+.people-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    position: relative;
+}
+
+.pay-btn {
+    background-color: #5590D3;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 0.5vw 1vw;
+    font-size: 0.9vw;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.3vw;
+    transition: background-color 0.2s ease;
+}
+
+.pay-btn:hover {
+    background-color: #4a7fc1;
+}
+
+.action-menu-btn {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #eee;
+    border-radius: 6px;
+    padding: 0.4vw;
+    font-size: 1.1vw;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-menu-btn:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.action-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: #333;
+    border-radius: 8px;
+    padding: 0.5vw;
+    z-index: 10;
+    width: 8vw;
+    border: 1px solid #444;
+}
+
+.action-menu a {
+    display: flex;
+    align-items: center;
+    gap: 0.5vw;
+    text-decoration: none;
+    color: #eee;
+    font-size: 0.9vw;
+    padding: 0.5vw;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.action-menu a.delete-btn:hover {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.action-menu a:hover {
+    background-color: #444;
+}
+
+.action-menu a i {
+    font-size: 1vw;
+}
+
+
+.no-contacts-message {
+    color: #888;
+    font-size: 1.1vw;
+    text-align: center;
+    padding: 5vw 2vw;
     width: 100%;
+    position: absolute;
+    top: 0;
+}
+
+/* --- Modal Styles --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+}
+
+.modal-content {
+    background-color: #242424;
+    border-radius: 20px;
+    padding: 2vw 2.5vw;
+    width: 30vw;
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    /* For GSAP transform */
+    transform: scale(0.9);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 1vw;
+    right: 1vw;
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    color: #eee;
+    border-radius: 50%;
+    height: 2.2vw;
+    width: 2.2vw;
+    font-size: 1.3vw;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.2s ease;
+}
+
+.modal-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.modal-content h2 {
+    font-size: 1.6vw;
+    font-weight: 600;
+    margin-bottom: 0.5vw;
+}
+
+.modal-content p {
+    font-size: 0.9vw;
+    color: #aaa;
+    margin-bottom: 1.5vw;
+}
+
+.modal-form .form-group {
+    margin-bottom: 1.2vw;
+    position: relative;
+}
+
+.modal-form label {
+    display: block;
+    font-size: 0.9vw;
+    font-weight: 500;
+    margin-bottom: 0.5vw;
+    color: #ddd;
+}
+
+.modal-form input,
+.modal-form select {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 1vw;
+    padding: 0.8vw 1vw;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.modal-form input:focus,
+.modal-form select:focus {
+    border-color: #5590D3;
+}
+
+.modal-form input::placeholder {
+    color: #888;
+}
+
+.modal-form select {
+    appearance: none;
+}
+
+/* --- NEW: Relation Tablet Styles --- */
+.relation-tablets {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5vw;
+}
+
+.relation-tablet {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #eee;
+    font-size: 0.8vw;
+    font-weight: 500;
+    padding: 0.5vw 1vw;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.relation-tablet:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.relation-tablet.active {
+    background-color: #5590D3;
+    color: white;
+    border-color: #5590D3;
+}
+
+
+.save-contact-btn {
+    width: 100%;
+    background-color: #5590D3;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 0.9vw;
+    font-size: 1vw;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 0.5vw;
+    transition: background-color 0.2s ease;
+}
+
+.save-contact-btn:hover {
+    background-color: #4a7fc1;
+}
+
+/* --- NEW: Form Error Message --- */
+.form-error-message {
+    color: #e74c3c;
+    font-size: 0.8vw;
+    padding-top: 4px;
+    display: none; /* Hidden by default */
+}
+
+.form-group input.error,
+.form-group input.error:focus {
+    border-color: #e74c3c;
+}
+
+.form-group .form-error-message.visible {
+    display: block;
 }

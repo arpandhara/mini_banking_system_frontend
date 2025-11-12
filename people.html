@@ -1,36 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>People - QuickPay</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
     <link rel="stylesheet" href="people.css">
 </head>
-<body>
-    
 
+<body>
     <main>
         <div class="innerBox">
             <div class="layer">
 
                 <div class="upperPart">
+                    <div class="people-header">
+                        <div class="header-left">
+                            <h1>Your People</h1>
+                            <div class="filter-wrapper">
+                                <button class="filter-btn" id="relationFilterBtn">
+                                    <span><i class="ri-group-line"></i> Relation</span>
+                                    <i class="ri-arrow-down-s-line"></i>
+                                </button>
+                                <div class="filter-menu" id="relationFilterMenu">
+                                    <a href="#" class="filter-menu-item" data-filter="all">All Relations</a>
+                                    <a href="#" class="filter-menu-item" data-filter="friend">Friend</a>
+                                    <a href="#" class="filter-menu-item" data-filter="mom">Mom</a>
+                                    <a href="#" class="filter-menu-item" data-filter="dad">Dad</a>
+                                    <a href="#" class="filter-menu-item" data-filter="relative">Relative</a>
+                                    <a href="#" class="filter-menu-item" data-filter="bf">BF</a>
+                                    <a href="#" class="filter-menu-item" data-filter="fiance">Fiance</a>
+                                    <a href="#" class="filter-menu-item" data-filter="other">Other</a>
+                                </div>
+                            </div>
+                            <div class="filter-wrapper">
+                                <button class="filter-btn"><i class="ri-filter-3-line"></i> More Filters</button>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <div class="search-bar">
+                                <i class="ri-search-line"></i>
+                                <input type="text" id="searchInput" placeholder="Search by name, phone, or relation...">
+                            </div>
+                            <button class="add-contact-btn" id="addContactBtn">
+                                <i class="ri-add-fill"></i> Add Contact
+                            </button>
+                        </div>
+                    </div>
 
+                    <div class="people-list-container">
+                        <div class="people-list-header">
+                        </div>
+                        <div class="people-list-body" id="peopleListBody">
+
+                            <p class_="no-contacts-message" id="noContactsMessage" style="display: none;">
+                                No contacts found. <br> Add one by clicking the "Add Contact" button!
+                            </p>
+
+                        </div>
+                    </div>
                 </div>
 
                 <div class="dock">
-                    <div class="dockbox">
-                        <a href="dashboard.html"><i class="ri-home-fill"></i></a>
-                        <a href="savings.html"><i class="ri-wallet-fill"></i></a>
-                        <a href="paymentPage.html"><i class="ri-hand-coin-fill"></i></a>
-                        <a href="people.html"><i class="ri-team-fill"></i></a>
-                        <a href="#"><i class="ri-history-fill"></i></a>
-                    </div>
                 </div>
             </div>
         </div>
     </main>
+
+    <div class="modal-overlay" id="addContactModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="modalCloseBtn"><i class="ri-close-line"></i></button>
+            <h2>Add New Contact</h2>
+            <p>Fill in the details to add a new person to your list.</p>
+            <form action="#" class="modal-form" id="addContactForm">
+                <div class="form-group">
+                    <label for="contactName">Full Name</label>
+                    <input type="text" id="contactName" placeholder="Enter full name" required>
+                    <span class="form-error-message"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="contactAccount">Bank Account (Last 4 Digits)</label>
+                    <input type="text" id="contactAccount" placeholder="e.g., 1234" maxlength="4" required>
+                    <span class="form-error-message"></span>
+                </div>
+                <div class="form-group">
+                    <label>Relation</label>
+                    <div class="relation-tablets" id="relationTablets">
+                        <button type="button" class="relation-tablet" data-value="friend">Friend</button>
+                        <button type="button" class="relation-tablet" data-value="mom">Mom</button>
+                        <button type="button" class="relation-tablet" data-value="dad">Dad</button>
+                        <button type="button" class="relation-tablet" data-value="relative">Relative</button>
+                        <button type="button" class="relation-tablet" data-value="bf">BF</button>
+                        <button type="button" class="relation-tablet" data-value="fiance">Fiance</button>
+                        <button type="button" class="relation-tablet" data-value="other">Other</button>
+                    </div>
+                    <input type="hidden" id="contactRelation" name="contactRelation" required>
+                    <span class="form-error-message"></span>
+                </div>
+                <button type="submit" class="save-contact-btn">Save Contact</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="dock">
+        <div class="dockbox">
+            <a href="dashboard.html"><i class="ri-home-fill"></i></a>
+            <a href="#"><i class="ri-wallet-fill"></i></a>
+            <a href="paymentPage.html"><i class="ri-hand-coin-fill"></i></a>
+            <a href="people.html"><i class="ri-team-fill"></i></a>
+            <a href="transactioins.html"><i class="ri-history-fill"></i></a>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="people.js"></script>
 </body>
+
 </html>
