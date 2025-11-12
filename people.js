@@ -24,7 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modal Form Fields
     const contactNameInput = document.getElementById('contactName');
-    // const contactPhoneInput = document.getElementById('contactPhone'); // <-- REMOVED
     const contactAccountInput = document.getElementById('contactAccount');
     const relationTabletsContainer = document.getElementById('relationTablets');
     const contactRelationInput = document.getElementById('contactRelation'); // Hidden input
@@ -68,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const newMenuId = `menu-${people_id}`;
         
         // Create search data string
-        // Use phone.toString() in case it's a number
         const searchTerms = `${name} ${phone ? phone.toString() : ''} ${account_id} ${full_account_number} ${relation}`.toLowerCase();
 
         // Create new row HTML
@@ -319,6 +317,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const actionBtn = e.target.closest('.action-menu-btn');
         const deleteBtn = e.target.closest('.delete-btn');
         const editBtn = e.target.closest('.edit-btn');
+        const payBtn = e.target.closest('.pay-btn'); // <-- *** NEW ***
 
         // Handle 3-dot menu click
         if (actionBtn) {
@@ -333,6 +332,29 @@ document.addEventListener("DOMContentLoaded", () => {
             menu.style.display = isVisible ? 'none' : 'block';
             currentlyOpenMenu = isVisible ? null : menu;
         } 
+        // --- *** NEW: Handle Pay Button Click *** ---
+        else if (payBtn) {
+            e.preventDefault();
+            const row = e.target.closest('.people-list-row');
+            const name = row.querySelector('.people-name p').textContent;
+            const fullAccount = row.querySelector('.people-account p').textContent;
+            const lastFourDigits = fullAccount.split(' ').pop(); // Gets the last 4 digits
+            const profilePic = row.querySelector('.people-name img').src; // Get the image source
+
+            // Create payment data object
+            const paymentData = {
+                transaction_type: 'bank_transfer', // Pre-set the transaction type
+                recipientAccount: lastFourDigits,
+                recipientName: name,
+                recipientPfp: profilePic // Store the profile pic path
+            };
+
+            // Save to localStorage using a new key
+            localStorage.setItem('quickPayPaymentData', JSON.stringify(paymentData));
+
+            // Redirect to payment page
+            window.location.href = 'paymentPage.html';
+        }
         // Handle Delete Button Click
         else if (deleteBtn) {
             e.preventDefault();

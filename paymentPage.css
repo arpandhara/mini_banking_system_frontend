@@ -802,3 +802,14 @@ main {
 #changePasswordModal .payment-error {
     margin-top: 0;
 }
+
+/* ... (add this to the end of your paymentPage.css file) ... */
+
+.recipient-name-display {
+    display: none; /* Hidden by default */
+    font-size: 0.9vw;
+    color: #2ecc71; /* Green to show success */
+    padding-left: 0.5vw;
+    margin-top: 0.5vw;
+    font-weight: 500;
+}

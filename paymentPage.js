@@ -432,25 +432,57 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // --- NEW: Function to check for pending deposit on page load ---
-    function checkForPendingDeposit() {
+    function checkForPendingPayment() {
+        // First, check for a pending SAVING deposit
         const pendingDepositRaw = localStorage.getItem('pendingDeposit');
+        
+        // Second, check for a pending BANK TRANSFER from people page
+        const pendingTransferRaw = localStorage.getItem('quickPayPaymentData'); // The new key
+
         if (pendingDepositRaw) {
             try {
                 const depositData = JSON.parse(pendingDepositRaw);
                 
                 if (depositData.isMakingDeposit && depositData.savingId) {
-                    // 1. We have a pending deposit. Configure the payload
                     paymentPayload = {
                         transaction_type: 'saving_deposit',
                         saving_id: depositData.savingId
                     };
                     
-                    // 2. Configure the confirmation screen UI
                     confirmTitle.textContent = 'Deposit to Saving Goal';
                     confirmName.textContent = depositData.savingName;
                     confirmDetail.textContent = `ID: ${depositData.savingId}`;
-                    confirmPfp.style.backgroundImage = 'none'; // Hide user PFP
+                    confirmPfp.style.backgroundImage = 'none'; 
                     confirmPfp.classList.add('is-saving'); // Show savings icon
+                    confirmAmount.value = ''; 
+                    confirmNoteInput.value = '';
+
+                    goToScreen('paymentConfirmScreen');
+                    showSheet();
+                }
+            } catch (e) {
+                console.error("Error parsing pending deposit data:", e);
+            }
+            // --- IMPORTANT: Clear the key after use ---
+            localStorage.removeItem('pendingDeposit');
+
+        } else if (pendingTransferRaw) { // <-- *** NEW LOGIC ***
+            try {
+                const paymentData = JSON.parse(pendingTransferRaw);
+
+                if (paymentData.transaction_type === 'bank_transfer') {
+                    // 1. We have a pending transfer. Configure the payload
+                    paymentPayload = {
+                        transaction_type: 'bank_transfer',
+                        recipient_account: paymentData.recipientAccount
+                    };
+                    
+                    // 2. Configure the confirmation screen UI
+                    confirmTitle.textContent = `Paying ${paymentData.recipientName}`;
+                    confirmName.textContent = paymentData.recipientName;
+                    confirmDetail.textContent = `Account: #${paymentData.recipientAccount}`;
+                    confirmPfp.style.backgroundImage = `url(${paymentData.recipientPfp})`; // Use the pfp
+                    confirmPfp.classList.remove('is-saving');
                     confirmAmount.value = ''; // Clear amount
                     confirmNoteInput.value = '';
 
@@ -459,9 +491,10 @@ document.addEventListener("DOMContentLoaded", () => {
                     showSheet();
                 }
             } catch (e) {
-                console.error("Error parsing pending deposit data:", e);
-                localStorage.removeItem('pendingDeposit');
+                console.error("Error parsing pending payment data:", e);
             }
+            // --- IMPORTANT: Clear the key after use ---
+            localStorage.removeItem('quickPayPaymentData');
         }
     }
     
