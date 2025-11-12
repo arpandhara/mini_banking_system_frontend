@@ -328,13 +328,73 @@ function renderSavings(savings = []) {
  * @param {Array} people - The list of people objects from the API.
  */
 function renderPeople(people = []) {
+    // Clear the container of any hard-coded cards
+    peopleCardsContainer.innerHTML = '';
+
     if (people.length === 0) {
-        noPeopleEl.style.display = 'block';
-        allPeopleCards.forEach(card => card.style.display = 'none');
+        // If no people, show the 'no people' message
+        peopleCardsContainer.innerHTML = '<p class="no_people_added" style="display: block;">No People Added</p>';
     } else {
-        noPeopleEl.style.display = 'none';
-        allPeopleCards.forEach(card => card.style.display = 'flex');
-        // (Note: This just shows the hard-coded cards. A full implementation would render them dynamically)
+        // Map profile picture assets based on relation
+        const profilePicMap = {
+            'friend': 'assets/people_male_friend.svg',
+            'mom': 'assets/people_lady.svg',
+            'dad': 'assets/people_male_friend.svg',
+            'relative': 'assets/people_female_friend.svg',
+            'bf': 'assets/people_male_friend.svg',
+            'fiance': 'assets/people_female_friend_2.svg',
+            'other': 'assets/userFace.svg'
+        };
+
+        // Loop through the people data and create new card HTML
+        people.forEach(person => {
+            const relation = person.relation ? person.relation.toLowerCase() : 'other';
+            const profilePic = profilePicMap[relation] || profilePicMap['other'];
+
+            const cardHtml = `
+                <div class="peopleCards" data-name="${person.name}">
+                    <div class="peoplepfp" style="background-image: url(${profilePic});">
+                    </div>
+                    <div class="peopleOtherDetails">
+                        <h3 class="peopleName">${person.name}</h3>
+                        <p class="peopleRelation">${person.relation}</p>
+                    </div>
+                </div>
+            `;
+            // Add the new card to the container
+            peopleCardsContainer.innerHTML += cardHtml;
+        });
+
+        // --- ADD CLICK LISTENERS ---
+        // After adding all cards, find them and add listeners
+        const newPeopleCards = peopleCardsContainer.querySelectorAll(".peopleCards");
+        
+        newPeopleCards.forEach(card => {
+            // Add hover animations
+            card.addEventListener("mouseenter", () => {
+                gsap.to(card, {
+                    scale: 1.05,
+                    backgroundColor: "rgba(255, 255, 255, 0.1)",
+                    duration: 0.2,
+                    ease: "power1.out"
+                });
+            });
+            card.addEventListener("mouseleave", () => {
+                gsap.to(card, {
+                    scale: 1,
+                    backgroundColor: "transparent",
+                    duration: 0.2,
+                    ease: "power1.out"
+                });
+            });
+
+            // Add click listener for redirect
+            card.addEventListener("click", () => {
+                const personName = card.dataset.name;
+                // Redirect to people page with the name as a search parameter
+                window.location.href = `people.html?search=${encodeURIComponent(personName)}`;
+            });
+        });
     }
 }
 

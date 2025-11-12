@@ -1,4 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchName = urlParams.get('search');
+
+    if (searchName) {
+        // If a name is in the URL, set it as the current search text
+        // and fill in the search bar
+        currentSearchText = searchName.toLowerCase();
+        searchInput.value = searchName;
+    }
+    
     // --- State Variables ---
     let currentRelationFilter = 'all';
     let currentSearchText = '';
