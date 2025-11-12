@@ -138,16 +138,16 @@ main {
     font-weight: 600;
 }
 
-.dateAndUserName h2{
-    color:  white;
+.dateAndUserName h2 {
+    color: white;
     font-weight: 600;
 }
 
-.statsOfTransactions{
+.statsOfTransactions {
     width: 100%;
     height: 25%;
     /* background-color: rebeccapurple; */
-    padding: 1vw 0vw ;
+    padding: 1vw 0vw;
     margin-top: .5vw;
     display: flex;
     align-items: center;
@@ -155,7 +155,7 @@ main {
     gap: .5vw;
 }
 
-.statBoxes{
+.statBoxes {
     height: 100%;
     width: 25%;
     background-color: rgba(255, 255, 255, 0.212);
@@ -166,14 +166,14 @@ main {
     justify-content: center;
 }
 
-.transactionContainer{
+.transactionContainer {
     height: 70%;
     width: 100%;
     background-color: #242424;
     border-radius: 15px;
 }
 
-.statBoxesIcon{
+.statBoxesIcon {
     height: 100%;
     width: 30%;
     /* background-color: rebeccapurple; */
@@ -182,7 +182,7 @@ main {
     justify-content: center;
 }
 
-.statBoxesIcon i{
+.statBoxesIcon i {
     font-size: 1.5vw;
     color: white;
     background-color: rgba(128, 0, 128, 0.196);
@@ -190,26 +190,26 @@ main {
     padding: 1vw;
 }
 
-.statBoxesStats{
+.statBoxesStats {
     height: 100%;
     width: 80%;
     display: flex;
     /* align-items: center; */
     flex-direction: column;
     justify-content: center;
-    color : white
+    color: white
 }
 
-.statBoxesStats p{
+.statBoxesStats p {
     font-size: .7vw;
 }
 
-.statBoxesStats h1{
+.statBoxesStats h1 {
     font-weight: 600;
     line-height: .95;
 }
 
-.transactionContainerTop{
+.transactionContainerTop {
     width: 100%;
     height: 10%;
     /* background-color: rebeccapurple; */
@@ -219,7 +219,7 @@ main {
     justify-content: space-between;
 }
 
-.transactionTypes{
+.transactionTypes {
     height: 100%;
     width: 30%;
     background-color: #151515;
@@ -230,11 +230,26 @@ main {
     color: white;
 }
 
-.transactionTypes p{
+/* --- MODIFIED: Added padding, radius, and transition --- */
+.transactionTypes p {
     cursor: pointer;
+    font-size: 0.9vw;
+    /* Added for consistency */
+    padding: 0.5vw 1vw;
+    border-radius: 10px;
+    transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-.transactionStatusOption{
+/* --- NEW: Active state for filter tabs --- */
+.transactionTypes p.active {
+    background-color: #5590D3;
+    /* Or any highlight color you prefer */
+    color: white;
+    font-weight: 600;
+}
+
+
+.transactionStatusOption {
     height: 100%;
     width: 12%;
     background-color: #151515;
@@ -246,19 +261,37 @@ main {
     color: white
 }
 
-.transactionContainerBottom{
+/* --- NEW: Style for the <select> dropdown --- */
+#transactionStatus {
+    background: transparent;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 0.9vw;
+    width: 60%;
+    /* Adjust as needed */
+    cursor: pointer;
+}
+
+#transactionStatus option {
+    background: #151515;
+    color: white;
+}
+
+
+.transactionContainerBottom {
     height: 90%;
     width: 100%;
     padding: .5vw;
     /* background-color: rebeccapurple; */
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; <-- REMOVED this */
+    /* justify-content: center; <-- REMOVED this */
     gap: .5vw;
 }
 
-.heading{
+.heading {
     height: 10%;
     width: 100%;
     background-color: #151515;
@@ -268,22 +301,129 @@ main {
     padding: .5vw;
     align-items: center;
     justify-content: center;
+    flex-shrink: 0;
+    /* --- NEW: Prevent heading from shrinking --- */
 }
 
-.transactionData{
-    height: 90%;
+/* --- MODIFIED: Adjusted height, added overflow, and padding --- */
+.transactionData {
+    height: 88%;
+    /* Adjusted from 90% to fit better */
     width: 100%;
     background-color: #151515;
     border-radius: 15px;
+    overflow-y: auto;
+    /* --- NEW: Enables scrolling for rows --- */
+    padding: 0 0.5vw;
+    /* --- NEW: Padding for the rows --- */
 }
 
-.heading p{
+/* --- NEW: Scrollbar styling --- */
+.transactionData::-webkit-scrollbar {
+    width: 8px;
+}
+
+.transactionData::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 10px;
+}
+
+.transactionData::-webkit-scrollbar-track {
+    background: #151515;
+}
+
+
+.heading p {
     width: 16.6%;
     /* background-color: rebeccapurple; */
     text-align: center;
-    border-right: 1px solid white;
+    border-right: 1px solid #444;
+    /* --- MODIFIED: Softer border color --- */
+    font-size: 0.9vw;
+    /* --- NEW: Added for consistency --- */
+    font-weight: 600;
+    /* --- NEW: Make heading bold --- */
 }
 
-.heading .removeBorder{
+.heading .removeBorder {
     border: none;
+}
+
+/* --- NEW: Styles for each dynamic transaction row --- */
+.transaction-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1vw 0.5vw;
+    color: #dcdcdc;
+    /* Lighter text color */
+    border-bottom: 1px solid #2a2a2a;
+    /* Row separator */
+}
+
+.transaction-row:last-child {
+    border-bottom: none;
+}
+
+.transaction-row p {
+    width: 16.6%;
+    text-align: center;
+    font-size: 0.85vw;
+    border-right: 1px solid #2a2a2a;
+    /* Column separator */
+    white-space: nowrap;
+    /* Prevent wrapping */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Add ... for long text */
+}
+
+.transaction-row p.removeBorder {
+    border: none;
+}
+
+/* --- NEW: Styles for amount and status colors --- */
+.transaction-row .amount {
+    font-weight: 600;
+}
+
+.transaction-row .amount-income {
+    color: #2ECC71;
+    /* Green */
+}
+
+.transaction-row .amount-outcome {
+    color: #E25C5C;
+    /* Red */
+}
+
+.transaction-row .status {
+    font-weight: 600;
+    text-transform: capitalize;
+    /* e.g., "completed" -> "Completed" */
+}
+
+.transaction-row .status-completed {
+    color: #2ECC71;
+    /* Green */
+}
+
+.transaction-row .status-pending {
+    color: #f39c12;
+    /* Yellow */
+}
+
+.transaction-row .status-failed {
+    color: #E25C5C;
+    /* Red */
+}
+
+/* --- NEW: Style for the 'no transactions' message --- */
+.no-transactions-message {
+    color: #888;
+    font-size: 1.1vw;
+    text-align: center;
+    margin-top: 5vw;
+    padding: 1vw;
 }
