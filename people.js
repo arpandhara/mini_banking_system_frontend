@@ -67,6 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const newMenuId = `menu-${people_id}`;
         
         // Create search data string
+        // Use phone.toString() in case it's a number
         const searchTerms = `${name} ${phone ? phone.toString() : ''} ${account_id} ${full_account_number} ${relation}`.toLowerCase();
 
         // Create new row HTML
@@ -312,12 +313,12 @@ document.addEventListener("DOMContentLoaded", () => {
         clearError(contactRelationInput);
     }
 
-    // --- Action Menu (Delete, Edit) Logic ---
+    // --- Action Menu (Delete, Edit, PAY) Logic ---
     peopleListBody.addEventListener('click', async (e) => {
         const actionBtn = e.target.closest('.action-menu-btn');
         const deleteBtn = e.target.closest('.delete-btn');
         const editBtn = e.target.closest('.edit-btn');
-        const payBtn = e.target.closest('.pay-btn'); // <-- *** NEW ***
+        const payBtn = e.target.closest('.pay-btn'); // <-- *** THIS IS THE NEW PART ***
 
         // Handle 3-dot menu click
         if (actionBtn) {
@@ -349,7 +350,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 recipientPfp: profilePic // Store the profile pic path
             };
 
-            // Save to localStorage using a new key
+            // Save to localStorage using the new key
             localStorage.setItem('quickPayPaymentData', JSON.stringify(paymentData));
 
             // Redirect to payment page
