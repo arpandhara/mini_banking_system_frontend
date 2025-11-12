@@ -1,15 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const searchName = urlParams.get('search');
+    // const urlParams = new URLSearchParams(window.location.search);
+    // const searchName = urlParams.get('search');
 
-    if (searchName) {
-        // If a name is in the URL, set it as the current search text
-        // and fill in the search bar
-        currentSearchText = searchName.toLowerCase();
-        searchInput.value = searchName;
-    }
-    
+    // if (searchName) {
+    //     // If a name is in the URL, set it as the current search text
+    //     // and fill in the search bar
+    //     currentSearchText = searchName.toLowerCase();
+    //     searchInput.value = searchName;
+    // }
+
     // --- State Variables ---
     let currentRelationFilter = 'all';
     let currentSearchText = '';
@@ -38,6 +38,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const contactAccountInput = document.getElementById('contactAccount');
     const relationTabletsContainer = document.getElementById('relationTablets');
     const contactRelationInput = document.getElementById('contactRelation'); // Hidden input
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const searchName = urlParams.get('search');
+
+    if (searchName) {
+        // If a name is in the URL, set it as the current search text
+        // and fill in the search bar
+        currentSearchText = searchName.toLowerCase();
+        searchInput.value = searchName;
+    }
 
     // Asset Map for new contacts
     const profilePicMap = {
@@ -76,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const relationText = relation.charAt(0).toUpperCase() + relation.slice(1);
         const profilePic = profilePicMap[relation.toLowerCase()] || profilePicMap['other'];
         const newMenuId = `menu-${people_id}`;
-        
+
         // Create search data string
         // Use phone.toString() in case it's a number
         const searchTerms = `${name} ${phone ? phone.toString() : ''} ${account_id} ${full_account_number} ${relation}`.toLowerCase();
@@ -107,11 +117,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </div>
         `;
-        
+
         peopleListBody.insertAdjacentHTML('beforeend', newRowHTML);
         return peopleListBody.lastElementChild;
     }
-    
+
     /**
      * Fetches all contacts from the server and renders them.
      */
@@ -147,7 +157,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             updateListView(); // Apply default filters
-            
+
         } catch (error) {
             console.error("Fetch error:", error);
             peopleListBody.innerHTML = `<p class="no-contacts-message" id="noContactsMessage" style="display: block; color: #E25C5C;">Error: Could not load data.</p>`;
@@ -185,7 +195,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // --- Filter & Search Logic ---
-    
+
     searchInput.addEventListener('input', (e) => {
         currentSearchText = e.target.value.toLowerCase();
         updateListView();
@@ -205,8 +215,8 @@ document.addEventListener("DOMContentLoaded", () => {
         const item = e.target.closest('.filter-menu-item');
         if (item) {
             currentRelationFilter = item.dataset.filter;
-            filterBtnText.innerHTML = item.dataset.filter === 'all' 
-                ? `<i class="ri-group-line"></i> Relation` 
+            filterBtnText.innerHTML = item.dataset.filter === 'all'
+                ? `<i class="ri-group-line"></i> Relation`
                 : item.textContent;
             gsap.to(relationFilterMenu, { autoAlpha: 0, y: -10, duration: 0.2, onComplete: () => relationFilterMenu.style.display = 'none' });
             updateListView();
@@ -270,7 +280,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Add Contact Form Submission
     addContactForm.addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const isNameValid = validateField(contactNameInput, 'Name is required.');
         const isAccountValid = validateField(contactAccountInput, 'Account number is required.');
         const isRelationValid = validateField(contactRelationInput, 'Relation is required.');
@@ -304,9 +314,9 @@ document.addEventListener("DOMContentLoaded", () => {
             // Success!
             const newPerson = result; // API returns the new person object
             const newRow = renderPersonRow(newPerson);
-            
+
             gsap.from(newRow, { opacity: 0, y: 20, duration: 0.4, ease: "power2.out" });
-            
+
             hideModal();
             updateListView(); // Re-run filters to show new row and hide "no contacts" message
 
@@ -336,14 +346,14 @@ document.addEventListener("DOMContentLoaded", () => {
             e.preventDefault();
             const menuId = actionBtn.dataset.target;
             const menu = document.getElementById(menuId);
-            
+
             if (currentlyOpenMenu && currentlyOpenMenu !== menu) {
                 currentlyOpenMenu.style.display = 'none';
             }
             const isVisible = menu.style.display === 'block';
             menu.style.display = isVisible ? 'none' : 'block';
             currentlyOpenMenu = isVisible ? null : menu;
-        } 
+        }
         // --- *** NEW: Handle Pay Button Click *** ---
         // --- *** NEW: Handle Pay Button Click *** ---
         else if (payBtn) {
@@ -381,19 +391,19 @@ document.addEventListener("DOMContentLoaded", () => {
                         method: "DELETE",
                         credentials: "include"
                     });
-                    
+
                     if (!response.ok) {
                         const result = await response.json();
                         throw new Error(result.error || "Could not delete contact.");
                     }
 
                     // Success: Animate out and remove
-                    gsap.to(row, { 
-                        opacity: 0, 
-                        height: 0, 
-                        paddingTop: 0, 
-                        paddingBottom: 0, 
-                        duration: 0.3, 
+                    gsap.to(row, {
+                        opacity: 0,
+                        height: 0,
+                        paddingTop: 0,
+                        paddingBottom: 0,
+                        duration: 0.3,
                         ease: "power2.in",
                         onComplete: () => {
                             row.remove();
@@ -405,7 +415,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     alert(`Error: ${error.message}`);
                 }
             }
-        } 
+        }
         // Handle Edit Button Click (Placeholder)
         else if (editBtn) {
             e.preventDefault();
@@ -421,12 +431,12 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         }
     });
-    
+
     // Close menu if clicking anywhere else on the document
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.people-actions') && currentlyOpenMenu) {
-             currentlyOpenMenu.style.display = 'none';
-             currentlyOpenMenu = null;
+            currentlyOpenMenu.style.display = 'none';
+            currentlyOpenMenu = null;
         }
     });
 

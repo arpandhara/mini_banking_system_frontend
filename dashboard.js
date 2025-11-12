@@ -116,32 +116,6 @@ savingsSeeAllButton.addEventListener("click", () => {
 // --- END of new click listeners ---
 
 
-const peopleCards = document.querySelectorAll(".peopleCards");
-
-peopleCards.forEach((card) => {
-
-    // Animate on mouse enter
-    card.addEventListener("mouseenter", () => {
-        gsap.to(card, {
-            scale: 1.05, // Make the card slightly bigger
-            backgroundColor: "rgba(255, 255, 255, 0.1)", // Add a subtle highlight
-            duration: 0.2,
-            ease: "power1.out"
-        });
-    });
-
-    // Animate on mouse leave
-    card.addEventListener("mouseleave", () => {
-        gsap.to(card, {
-            scale: 1, // Return to original size
-            backgroundColor: "transparent", // Remove the highlight
-            duration: 0.2,
-            ease: "power1.out"
-        });
-    });
-});
-
-
 // This function will be called AFTER the dynamic cards are rendered
 function addSavingCardAnimations() {
     const savingCards = document.querySelectorAll(".savingBoxes");
@@ -185,6 +159,7 @@ let noSavingsEl = document.querySelector(".no_savings_text");
 // Select elements for people
 let allPeopleCards = document.querySelectorAll(".peopleCards");
 let noPeopleEl = document.querySelector(".no_people_added");
+let peopleCardsContainer = document.querySelector(".peopleRight");
 
 
 /**

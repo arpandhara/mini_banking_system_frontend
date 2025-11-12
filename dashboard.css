@@ -530,11 +530,6 @@ main {
     border-radius: 15px;
 }
 
-.savingsLeftUp,
-.savingsLeftDown {
-    /* display: none; */
-}
-
 .no_savings_text {
     color: white;
     display: none;
@@ -602,7 +597,7 @@ main {
     padding: .5vw;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: center; */
     flex-direction: column;
 }
 
@@ -648,6 +643,9 @@ main {
 .peopleName {
     font-weight: 500;
     font-size: 1.3vw;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .peopleRelation {
@@ -730,10 +728,6 @@ main {
 
 .no_transaction {
     color: white;
-}
-
-.no_transaction {
-    /* display: none; */
 }
 
 .slidesLeftName {
