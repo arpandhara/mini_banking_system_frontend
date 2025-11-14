@@ -255,6 +255,7 @@ body::-webkit-scrollbar{
     border-bottom: 1px solid #333;
     font-size: 1vw;
     transition: background-color 0.2s ease;
+    z-index: -5;
 }
 
 .people-list-row:hover {
@@ -421,14 +422,15 @@ body::-webkit-scrollbar{
 .action-menu {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 0%;
     right: 0;
     background-color: #333;
     border-radius: 8px;
     padding: 0.5vw;
-    z-index: 10;
+    /* z-index: 10; */
     width: 8vw;
     border: 1px solid #444;
+    z-index: 100000;
 }
 
 .action-menu a {
