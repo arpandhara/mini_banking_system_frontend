@@ -422,7 +422,35 @@ document.addEventListener("DOMContentLoaded", () => {
         const pendingTransferRaw = localStorage.getItem('quickPayPaymentData'); // The new key
 
         if (pendingDepositRaw) {
-            // ... (handles savings deposit logic) ...
+            try {
+                const paymentData = JSON.parse(pendingDepositRaw);
+                
+                if (paymentData.savingId && paymentData.savingName) {
+                    // 1. Configure the payload for a savings deposit
+                    paymentPayload = {
+                        transaction_type: 'saving_deposit',
+                        saving_id: paymentData.savingId 
+                    };
+                    
+                    // 2. Configure the UI for a savings deposit
+                    confirmTitle.textContent = 'Deposit to Savings';
+                    confirmName.textContent = paymentData.savingName;
+                    confirmDetail.textContent = `Saving Goal: #${paymentData.savingId.split('_')[1]}`;
+                    
+                    confirmPfp.style.backgroundImage = 'none'; // Clear user PFP
+                    confirmPfp.classList.add('is-saving');   // Add saving icon class (see CSS fix)
+                    
+                    confirmAmount.value = ''; // Clear amount
+                    confirmNoteInput.value = ''; // Clear note
+
+                    // 3. Show the sheet and go to the confirm screen
+                    goToScreen('paymentConfirmScreen');
+                    showSheet();
+                }
+            } catch (e) {
+                console.error("Error parsing pending deposit data:", e);
+            }
+            
             // --- IMPORTANT: Clear the key after use ---
             localStorage.removeItem('pendingDeposit');
 
