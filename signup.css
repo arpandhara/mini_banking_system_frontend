@@ -180,3 +180,7 @@ main {
 .error {
     border: 2px solid red;
 }
+
+.alternate{
+    color: rgb(0, 132, 255);
+}

@@ -259,7 +259,6 @@ function createDashboardCardHTML(saving) {
             <div class="savingBoxesContent">
                 <div class="savingsNameAndArrow">
                     <p class="savingsName">${name}</p>
-                    <img src="assets/Expand_right.svg" alt="">
                 </div>
                 <h2 class="totalSaved"><span>₹</span>${formattedSaved}</h2>
             </div>

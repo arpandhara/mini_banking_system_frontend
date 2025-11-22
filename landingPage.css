@@ -118,17 +118,24 @@ main {
 .signUp , .logIn{
     text-decoration: none;
     border: none;  
-    padding: 1vw 10vw;
+    padding: 1vw 0;
+    width: 20vw; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 15vw;
     cursor: pointer;
 }
 
 .signUp{
     background-color: #D355D3;
+    font-weight: 500;
 }
 
 .logIn{
     background-color: #5590D3;
+    font-weight: 500;
+
 }
 
 .content a{
